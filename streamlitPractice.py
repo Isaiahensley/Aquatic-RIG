@@ -16,13 +16,13 @@ import pandas as pd
 # Answer the questions in the following code statements. After this
 def main():
     # Put your name here
-    st.title("")
+    st.title("Sudeep Paudel")
 
     # What are .nc files used for and how is the data stored?
-    st.write("")
+    st.write("Nc files refers to NetCDF files used for saving climate data in multi dimensions(array oriented scientific data) ")
 
     # What is spatio temporal data?
-    st.write("")
+    st.write("Spatio Temporal data refers to data related to both space and time")
 
     # Take a look at the matPlot generated on the website. It's generated from a simple csv file with temperature
     # readings at various x and y coordinates. How would things become complicated if the dataset also had another
