@@ -22,13 +22,16 @@ def main():
     st.write("Nc files refers to NetCDF files used for saving climate data in multi dimensions(array oriented scientific data) ")
 
     # What is spatio temporal data?
-    st.write("Spatio Temporal data refers to data related to both space and time")
+    st.write("Spatio Temporal data refers to data related to both space and time.")
 
     # Take a look at the matPlot generated on the website. It's generated from a simple csv file with temperature
     # readings at various x and y coordinates. How would things become complicated if the dataset also had another
     # dimension "z"? Then also imagine this data was all collected over and over again every hour. How could we
     # visualize data like this?
-    st.write("")
+    st.write("If the dataset also had **another dimension 'z'** in addition to the x and y coordinates, "
+             "*then z might represent something like the depth of the water.* If the data was collected over and over "
+             "again every hour we might visualize the data by adding a feature that allows users to *adjust through "
+             "times by the hour.*")
 
 def matPlot():
     # Load CSV data into a DataFrame
