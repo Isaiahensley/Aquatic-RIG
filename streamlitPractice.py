@@ -28,7 +28,7 @@ def main():
     # readings at various x and y coordinates. How would things become complicated if the dataset also had another
     # dimension "z"? Then also imagine this data was all collected over and over again every hour. How could we
     # visualize data like this?
-    st.write("")
+    st.write("**If the data has another dimension example: z,which collects temperature over time we will use scatter function to create 3D or animated plotting ")
 
 def matPlot():
     # Load CSV data into a DataFrame
