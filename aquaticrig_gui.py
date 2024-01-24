@@ -3,6 +3,7 @@ from home_page import home_page
 from about_page import about_page
 from feedback_page import feedback_page
 from datasetmanagement_page import datasetmanagement_page
+import streamlit.components.v1 as components
 
 class MultiApp:
     def __init__(self):
