@@ -5,10 +5,12 @@ from PIL import Image
 def home_page():
 
     st.sidebar.markdown("Dataset-Related Links")
-    st.sidebar.button("Testing")
+    st.sidebar.link_button("GitHub Page", "https://github.com/Isaiahensley/Aquatic-RIG")
 
     st.sidebar.markdown("Software-Related Links")
-    st.sidebar.button("Testing2")
+    st.sidebar.link_button("Matplotlib", "https://matplotlib.org/")
+    st.sidebar.link_button("Streamlit", "https://streamlit.io/")
+    st.sidebar.link_button("NumPy", "https://numpy.org/")
 
 
     left_col, right_col = st.columns(2)
