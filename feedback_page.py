@@ -7,7 +7,6 @@ from io import BytesIO
 def generate_pdf(data):
     pdf_filename = "feedback_report.pdf"
     pdf_canvas = canvas.Canvas(pdf_filename, pagesize=letter)
-
     pdf_canvas.setFont("Helvetica", 12)
     pdf_canvas.drawString(100, 750, "Feedback Report")
 
@@ -88,3 +87,5 @@ def feedback_form():
 
     if __name__ == "__main__":
         feedback_form()
+
+
