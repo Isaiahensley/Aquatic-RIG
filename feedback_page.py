@@ -6,13 +6,13 @@ def feedback_page():
     st.textbox()
     st.button("Submit")
 
-## <html>
-## <head>
-## <title>Aquatic Rig Feedback Page</title>
-## </head>
-## <body>
-## <h1>Give us feedback</h1>
-## <textbox></textbox>
-## <button>Submit</button>
-## </body>
-## </html>
+##  <html>
+##      <head>
+##          <title>Aquatic Rig Feedback Page</title>
+##      </head>
+##      <body>
+##          <h1>Give us feedback</h1>
+##          <textbox></textbox>
+##          <button>Submit</button>
+##      </body>
+##  </html>
