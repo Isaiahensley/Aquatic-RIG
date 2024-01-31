@@ -20,7 +20,7 @@ def generate_pdf(data):
     pdf_canvas.save()
     return pdf_filename
 
-def feedback_form():
+def feedback_page():
     st.title("Website Feedback Form")
 
     with st.container():
@@ -87,4 +87,4 @@ def feedback_form():
         st.success("Thank you for your feedback! 🚀")
 
     if __name__ == "__main__":
-        feedback_form()
+        feedback_page()
