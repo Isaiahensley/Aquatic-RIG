@@ -4,6 +4,7 @@ from reportlab.pdfgen import canvas
 import base64
 from io import BytesIO
 
+
 def generate_pdf(data):
     pdf_filename = "feedback_report.pdf"
     pdf_canvas = canvas.Canvas(pdf_filename, pagesize=letter)
@@ -19,6 +20,7 @@ def generate_pdf(data):
 
     pdf_canvas.save()
     return pdf_filename
+
 
 def feedback_page():
     st.title("Website Feedback Form")
