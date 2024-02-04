@@ -38,22 +38,13 @@ def feedback_form():
         st.success("Feedback submitted successfully!")
 
 
+def website_feedback_form():
+    pass
+
+
 if __name__ == "__main__":
     website_feedback_form()
 
 
 def feedback_page():
     st.title("Aquatic Rig Feedback Page")
-    st.textbox()
-    st.button("Submit")
-
-##  <html>
-##      <head>
-##          <title>Aquatic Rig Feedback Page</title>
-##      </head>
-##      <body>
-##          <h1>Give us feedback</h1>
-##          <textbox></textbox>
-##          <button>Submit</button>
-##      </body>
-##  </html>
