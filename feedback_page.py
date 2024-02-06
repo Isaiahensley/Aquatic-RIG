@@ -3,6 +3,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import base64
 from io import BytesIO
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
 
 def generate_pdf(data):
@@ -22,6 +24,22 @@ def generate_pdf(data):
     return pdf_filename
 
 
+def upload_to_google_drive(pdf_filename, folder_id):
+    gauth = GoogleAuth()
+
+    # Load credentials from the JSON key file
+    gauth.credentials = ServiceAccountCredentials.from_json_keyfile_name('path/to/your/credentials.json', ['https://www.googleapis.com/auth/drive'])
+
+    # Start PyDrive with the loaded credentials
+    drive = GoogleDrive(gauth)
+
+    # Upload the PDF to Google Drive in the specified folder
+    pdf_file = drive.CreateFile({'title': pdf_filename, 'parents': [{'id': folder_id}]})
+    pdf_file.Upload()
+
+    return pdf_file['id']
+
+
 def feedback_page():
     st.title("Website Feedback Form")
 
@@ -32,11 +50,14 @@ def feedback_page():
 
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Content Feedback</h3>", unsafe_allow_html=True)
-        found_what_needed = st.radio("Did you find what you needed?", ["Yes, all of it", "Yes, some of it", "No, none of it"])
+        found_what_needed = st.radio("Did you find what you needed?",
+                                     ["Yes, all of it", "Yes, some of it", "No, none of it"])
         additional_info = ""
         if found_what_needed == "No, none of it":
-            additional_info = st.text_area("If you did not find any or all of what you needed, please tell us what information you were looking for.")
-        ease_of_finding_info = st.radio("Please tell us how easy it is to find information on the site.", ["Very Easy", "Easy", "Average", "Difficult", "Very Difficult"])
+            additional_info = st.text_area(
+                "If you did not find any or all of what you needed, please tell us what information you were looking for.")
+        ease_of_finding_info = st.radio("Please tell us how easy it is to find information on the site.",
+                                        ["Very Easy", "Easy", "Average", "Difficult", "Very Difficult"])
 
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Overall Impression</h3>", unsafe_allow_html=True)
@@ -44,15 +65,20 @@ def feedback_page():
         # Create a row with radio boxes using columns and Markdown
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown("a. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="a"))
+            st.markdown(
+                "a. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="a"))
         with col2:
-            st.markdown("b. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="b"))
+            st.markdown(
+                "b. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="b"))
         with col3:
-            st.markdown("c. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="c"))
+            st.markdown(
+                "c. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="c"))
 
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Likelihood to Visit Again</h3>", unsafe_allow_html=True)
-        likelihood_to_visit_again = st.selectbox("What is the likelihood that you will visit the website again?", ["Extremely likely", "Very likely", "Moderately likely", "Slightly likely", "Not at all likely"])
+        likelihood_to_visit_again = st.selectbox("What is the likelihood that you will visit the website again?",
+                                                 ["Extremely likely", "Very likely", "Moderately likely",
+                                                  "Slightly likely", "Not at all likely"])
         additional_comments = st.text_area("Please add any comments you have for improving the website.")
 
     if st.button("SEND"):
