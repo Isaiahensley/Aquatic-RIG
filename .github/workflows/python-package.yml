@@ -3,12 +3,12 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - develop  # Adjust branch name as needed
+      - feature/pipeline-integration  
 
 jobs:
   build:
     name: Build and Check
-    runs-on: ubuntu-latest  # You can change the runner environment if needed
+    runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout Repository
@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.x  # Specify the Python version you're using
+        python-version: 3.x  
 
     - name: Install dependencies
       run: |
