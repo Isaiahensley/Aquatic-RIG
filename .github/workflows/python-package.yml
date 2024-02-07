@@ -26,10 +26,8 @@ jobs:
 
     - name: Lint code
       run: |
-        # Example command to run linting tool (adjust according to your project)
-        pylint your_code_directory/
+        pylint .
 
     - name: Check code formatting
       run: |
-        # Example command to check code formatting (adjust according to your project)
-        black --check your_code_directory/
+        black --check .
