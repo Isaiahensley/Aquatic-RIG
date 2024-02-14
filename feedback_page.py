@@ -4,6 +4,7 @@ from reportlab.pdfgen import canvas
 import base64
 from io import BytesIO
 
+
 def generate_pdf(data):
     pdf_filename = "feedback_report.pdf"
     pdf_canvas = canvas.Canvas(pdf_filename, pagesize=letter)
@@ -19,6 +20,7 @@ def generate_pdf(data):
 
     pdf_canvas.save()
     return pdf_filename
+
 
 def feedback_page():
     st.title("Website Feedback Form")
@@ -85,7 +87,7 @@ def feedback_page():
         first_field_q = ""
         first_field = st.markdown("Ease of Use")
         first_field_q = st.markdown("How easy was it to navigate the website and interact with the data visualization tools?")
-        first_radio = st.radio("", ["Very Easy","Easy","Moderate","Hard","Very Hard"])
+        first_radio = st.radio("", ["Very Easy", "Easy", "Moderate", "Hard", "Very Hard"])
 
     # Second Field
     with st.container():
