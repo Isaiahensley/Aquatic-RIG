@@ -79,5 +79,76 @@ def feedback_page():
         st.markdown("### Generated PDF:")
         st.success("Thank you for your feedback! 🚀")
 
+    # First Field
+    with st.container():
+        first_field = ""
+        first_field_q = ""
+        first_field = st.markdown("Ease of Use")
+        first_field_q = st.markdown("How easy was it to navigate the website and interact with the data visualization tools?")
+        first_radio = st.radio("", ["Very Easy","Easy","Moderate","Hard","Very Hard"])
+
+    # Second Field
+    with st.container():
+        second_field = ""
+        second_field_q = ""
+        second_field = st.markdown("Design and Layout")
+        second_field_q = st.text_area("Feedback on the website's design, aesthetics, and organization?")
+
+    # Third Field
+    with st.container():
+        third_field = ""
+        third_field_q = ""
+        third_field = st.markdown("Performance")
+        third_field_q = st.text_area("How was the website's loading speed and responsiveness? Did you enounter any technical issues?")
+
+    # Fourth Field
+    with st.container():
+        fourth_field = ""
+        fourth_field_q = ""
+        fourth_field = st.markdown("Data Visualization Quality")
+        fourth_field_q = st.text_area("Give opinions on the effectiveness and clarity of the NC files data visualization.")
+
+    # Fifth Field
+    with st.container():
+        fifth_field = ""
+        fifth_field_q = ""
+        fifth_field = st.markdown("Features and Functionality")
+        fifth_field_q = st.text_area("Comment on specific features you found useful or lacking?")
+
+    # Sixth Field
+    with st.container():
+        sixth_field = ""
+        sixth_field_q = ""
+        sixth_field = st.markdown("Suggestions for Improvement")
+        sixth_field_q = st.text_area("Provide an open-ended field where users can share any suggestions or ideas for enhancing the website.")
+
+    # Seventh Field
+    with st.container():
+        seventh_field = ""
+        seventh_field_q = ""
+        seventh_field = st.markdown("User Demographics: Optionally")
+        seventh_field_q = st.text_area("Include demographic questions such as age range, occupation, or industry to better understand your website's user base.")
+
+    # Eighth Field
+    with st.container():
+        eighth_field = ""
+        eighth_field_q = ""
+        eighth_field = st.markdown("User Experience")
+        eighth_field_q = st.text_area("Include questions or fields where users can describe their experience using the website in their own words. This can provide valuable insights into usability issues or positive aspects of the website.")
+
+    # Ninth Field
+    with st.container():
+        ninth_field = ""
+        ninth_field_q = ""
+        ninth_field = st.markdown("Contact Information")
+        ninth_field_q = st.text_area("Offer users the option to provide their email address or contact information if they would like a response or follow-up regarding their feedback.")
+
+    # Tenth Field
+    with st.container():
+        tenth_field = ""
+        tenth_field_q = ""
+        tenth_field = st.markdown("Privacy and Data Usage")
+        tenth_field_q = st.text_area("Include a brief statement about how you will use the feedback data and ensure users that their responses will be kept confidential and used only for improving the website")
+
     if __name__ == "__main__":
         feedback_page()
