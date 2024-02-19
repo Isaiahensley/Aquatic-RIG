@@ -9,7 +9,7 @@ from io import BytesIO
 def datasetmanagement_page():
     st.title("Dataset Management")
 
-    # File uploader for multiple .nc files in the sidebar
+    # File uploader for multiple .nc files in the side-bar
     files_upload = st.file_uploader("Upload datasets", type=["nc"], accept_multiple_files=True)
 
     # Initialize a mapping of datetime strings to their corresponding file names
