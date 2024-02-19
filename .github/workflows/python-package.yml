@@ -3,7 +3,7 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - feature/pipeline-integration 
+      - feature/feedback-page 
       - feature/dataset-management-page
 
 
