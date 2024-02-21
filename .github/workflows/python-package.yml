@@ -6,7 +6,6 @@ on:
       - feature/feedback-page 
       - feature/dataset-management-page
 
-
 jobs:
   build:
     name: Build and Check
@@ -31,5 +30,4 @@ jobs:
         pylint .
 
     - name: Check code formatting
-      run: |
-        black --check .
+      run: black --check .
