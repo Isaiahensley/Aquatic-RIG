@@ -3,7 +3,7 @@ name: Bug
 about: Report bug and find solution
 title: ''
 labels: bug
-assignees: Isaiahensley
+assignees: ''
 
 ---
 
