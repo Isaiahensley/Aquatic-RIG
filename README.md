@@ -1,2 +1,0 @@
-# Aquatic-RIG
-Our Senior Capstone project focuses on developing a Streamlit website dedicated to the visualization of aquatic data. Aquatic data is inherently complex, being both spatiotemporal—capturing information over different times and locations. Our website will let users adjust the time and coordinate locations to have the graphs change dynamically in real-time. This will allow complex data files such as .nc files to be easy and intuitive to visualize.
