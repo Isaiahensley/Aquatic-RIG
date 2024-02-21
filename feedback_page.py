@@ -27,7 +27,7 @@ def feedback_page():
 
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
-        first_time_visitor = st.radio("Is this the first time you have visited the website?", ["Yes", "No"])
+        first_time_visitor = st.radio("Is this the first time you are visiting the website?", ["Yes", "No"])
         primary_reason = st.text_input("What is the PRIMARY reason you came to the site?")
 
         # Slider for overall satisfaction rating
