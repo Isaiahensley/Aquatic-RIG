@@ -3,7 +3,7 @@ name: Feature
 about: Suggest and work on an idea for this project
 title: ''
 labels: ''
-assignees: Isaiahensley
+assignees: ''
 
 ---
 
