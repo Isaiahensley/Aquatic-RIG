@@ -3,8 +3,7 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - feature/feedback-page 
-      - feature/dataset-management-page
+      - main
 
 jobs:
   build:
