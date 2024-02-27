@@ -1,4 +1,2 @@
-streamlit
-matplotlib
-pandas
-reportlab
+streamlit~=1.31.0
+reportlab~=4.1.0
