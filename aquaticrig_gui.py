@@ -2,8 +2,7 @@ import streamlit as st
 from home_page import home_page
 from about_page import about_page
 from feedback_page import feedback_page
-from datasetmanagement_page import datasetmanagement_page
-import streamlit.components.v1 as components
+from datasetmanagement_page import dataset_management_page
 
 class MultiApp:
     def __init__(self):
@@ -24,7 +23,7 @@ class MultiApp:
         if selected_app == "Home Page":
             home_page()
         elif selected_app == "Dataset Management":
-            datasetmanagement_page()
+            dataset_management_page()
         elif selected_app == "About Page":
             about_page()
         elif selected_app == "Feedback":
@@ -35,7 +34,7 @@ if __name__ == "__main__":
     app = MultiApp()
 
     app.add_app("Home Page", home_page)
-    app.add_app("Dataset Management", datasetmanagement_page)
+    app.add_app("Dataset Management", dataset_management_page)
     app.add_app("About Page", about_page)
     app.add_app("Feedback", feedback_page)
 
