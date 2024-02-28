@@ -42,13 +42,7 @@ def feedback_page():
         likelihood_to_visit_again = st.selectbox("What is the likelihood that you will visit the website again?", ["Extremely likely", "Very likely", "Moderately likely", "Slightly likely", "Not at all likely"])
         additional_comments = st.text_area("Please add any comments you have for improving the website.")
 
-    # First Field
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Ease of Use</h3>")
-        first_field_q = st.markdown("How easy was it to navigate the website and interact with the data visualization tools?")
-        first_radio = st.radio("", ["Very Easy", "Easy", "Moderate", "Hard", "Very Hard"])
-
-    # Second Field
+   # Second Field
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Design and Layout</h3>", unsafe_allow_html=True)
         second_field_q = st.text_area("Is there anything you'd like to bring up about the website's design, aesthetics, and organization?")
