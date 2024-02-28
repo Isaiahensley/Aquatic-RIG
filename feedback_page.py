@@ -30,11 +30,6 @@ def feedback_page():
         first_time_visitor = st.radio("Is this the first time you are visiting the website?", ["Yes", "No"])
         primary_reason = st.text_input("What is the PRIMARY reason you came to the site?")
 
-        # Slider for overall satisfaction rating
-        st.write("Overall Satisfaction Rating:")
-        st.write("Please rate your overall satisfaction with the website:")
-        overall_satisfaction = st.slider('Select a rating:', min_value=1, max_value=5, step=1)
-
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Content Feedback</h3>", unsafe_allow_html=True)
         found_what_needed = st.radio("Did you find what you needed?", ["Yes, all of it", "Yes, some of it", "No, none of it"])
@@ -107,7 +102,6 @@ def feedback_page():
         feedback_data = {
             "First Time Visitor": first_time_visitor,
             "Primary Reason For visiting the website": primary_reason,
-            "Overall Satisfaction Rating": overall_satisfaction,
             "Found What Needed": found_what_needed,
             "Additional Info": additional_info,
             "Likelihood to Visit Again": likelihood_to_visit_again,
