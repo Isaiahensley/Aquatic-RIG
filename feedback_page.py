@@ -36,8 +36,6 @@ def feedback_page():
         additional_info = ""
         if found_what_needed == "No, none of it":
             additional_info = st.text_area("If you did not find any or all of what you needed, please tell us what information you were looking for.")
-        ease_of_finding_info = st.radio("Please tell us how easy it is to find information on the site.", ["Very Easy", "Easy", "Average", "Difficult", "Very Difficult"])
-
 
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Likelihood to Visit Again</h3>", unsafe_allow_html=True)
@@ -106,7 +104,6 @@ def feedback_page():
             "Additional Info": additional_info,
             "Likelihood to Visit Again": likelihood_to_visit_again,
             "Additional Comments": additional_comments,
-            "Ease of Use": first_field_q,
             "Design and Layout": second_field_q,
             "Performance": third_field_q,
             "Data Visualization Quality": fourth_field_q,
