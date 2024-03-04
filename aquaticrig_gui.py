@@ -3,7 +3,8 @@ from home_page import home_page
 from about_page import about_page
 from feedback_page import feedback_page
 from datasetmanagement_page import dataset_management_page
-
+import logging
+from dropbox_utils import DropboxLogger
 class MultiApp:
     def __init__(self):
         self.apps = []
@@ -20,15 +21,20 @@ class MultiApp:
         )
         st.sidebar.markdown("---")
 
-        if selected_app == "Home Page":
-            home_page()
-        elif selected_app == "Dataset Management":
-            dataset_management_page()
-        elif selected_app == "About Page":
-            about_page()
-        elif selected_app == "Feedback":
-            feedback_page()
-
+        try:
+            if selected_app == "Home Page":
+                home_page()
+            elif selected_app == "Dataset Management":
+                dataset_management_page()
+            elif selected_app == "About Page":
+                about_page()
+            elif selected_app == "Feedback":
+                feedback_page()
+        except Exception as e:
+            error_log = f"An error occurred in {selected_app}: {str(e)}"
+            logging.error(error_log)
+            st.error(f"An error occurred: {str(e)}")
+            dropbox_logger.upload_error_log(error_log)
 
 if __name__ == "__main__":
     app = MultiApp()
