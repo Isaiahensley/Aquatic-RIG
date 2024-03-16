@@ -109,18 +109,12 @@ def feedback_page():
         likelihood_to_visit_again = st.selectbox("What is the likelihood that you will visit the website again?",
                                                  ["Extremely likely", "Very likely", "Moderately likely",
                                                   "Slightly likely", "Not at all likely"])
-        additional_comments = st.text_area("Please add any comments you have for improving the website.")
-
-        # Slider for Overall Satisfaction Rating
-        st.write("Overall Satisfaction Rating:")
-        st.write("Please rate your overall satisfaction with the website:")
-        overall_satisfaction = st.slider('Select a rating:', min_value=1, max_value=5, step=1)
 
     # Contact Information Container
     with st.container():
         contact_info_markdown = ""
         email_address = ""
-        contact_info_markdown = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>")
+        contact_info_markdown = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>", unsafe_allow_html=True)
         email_address = st.text_area("Email Address:")
 
     # User Demographics Container
@@ -129,7 +123,7 @@ def feedback_page():
         age = ""
         occupation = ""
         industry = ""
-        user_demo = st.markdown("<h3 style='color: #0077cc;'>User Demographics: Optional</h3>")
+        user_demo = st.markdown("<h3 style='color: #0077cc;'>User Demographics: Optional</h3>", unsafe_allow_html=True)
         age = st.text_area("Age:")
         occupation = st.text_area("Occupation:")
         industry = st.text_area("Industry:")
@@ -138,7 +132,7 @@ def feedback_page():
     with st.container():
         privacy_markdown = ""
         privacy_statement = ""
-        privacy_markdown = st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>")
+        privacy_markdown = st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
         privacy_statement = st.markdown(
             "We will use your feedback data and ensure that your responses will be kept confidential and used only for improving this website.")
 
