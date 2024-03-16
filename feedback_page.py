@@ -57,10 +57,10 @@ def feedback_page():
         first_radio = st.radio("", ["Very Easy", "Easy", "Moderate", "Hard", "Very Hard"])
 
         # Question 3:
-        # How was the website's loading speed and responsiveness? Did you enounter any technical issues?
+        # How was the website's loading speed and responsiveness? Did you encounter any technical issues?
         second_question = ""
         second_question = st.text_area(
-            "How was the website's loading speed and responsiveness? Did you enounter any technical issues?")
+            "How was the website's loading speed and responsiveness? Did you encounter any technical issues?")
 
         # Question 4:
         # Was the NC files' data visualization effective and clarified?
@@ -116,11 +116,11 @@ def feedback_page():
         st.write("Please rate your overall satisfaction with the website:")
         overall_satisfaction = st.slider('Select a rating:', min_value=1, max_value=5, step=1)
 
-    # Contant Information Container
+    # Contact Information Container
     with st.container():
-        contant_info_markdown = ""
+        contact_info_markdown = ""
         email_address = ""
-        contant_info_markdown = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>")
+        contact_info_markdown = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>")
         email_address = st.text_area("Email Address:")
 
     # User Demographics Container
