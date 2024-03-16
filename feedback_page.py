@@ -28,129 +28,77 @@ def feedback_page():
     # Title
     st.title("Website Feedback Form")
 
-    # User Information Container
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
-        first_time_visitor = st.radio("Is this the first time you are visiting the website?", ["Yes", "No"])
-        primary_reason = st.text_input("What is the PRIMARY reason you came to the site?")
-
-    # Content Feedback Container
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Content Feedback</h3>", unsafe_allow_html=True)
-
-        # Question 1:
-        # Did you find what you needed?
-        found_what_needed = st.radio("Did you find what you needed?",
-                                     ["Yes, all of it", "Yes, some of it", "No, none of it"])
-        additional_info = ""
-        if found_what_needed == "No, none of it":
-            additional_info = st.text_area(
-                "If you did not find any or all of what you needed, please tell us what information you were looking for.")
-        ease_of_finding_info = st.radio("Please tell us how easy it is to find information on the site.",
-                                        ["Very Easy", "Easy", "Average", "Difficult", "Very Difficult"])
-
-        # Question 2:
-        # How easy was it to navigate the website and interact with the data visualization tools?
-        first_question = ""
-        first_question = st.markdown(
-            "How easy was it to navigate the website and interact with the data visualization tools?")
-        first_radio = st.radio("", ["Very Easy", "Easy", "Moderate", "Hard", "Very Hard"])
-
-        # Question 3:
-        # How was the website's loading speed and responsiveness? Did you encounter any technical issues?
-        second_question = ""
-        second_question = st.text_area(
-            "How was the website's loading speed and responsiveness? Did you encounter any technical issues?")
-
-        # Question 4:
-        # Was the NC files' data visualization effective and clarified?
-        third_question = ""
-        third_question = st.text_area("Was the NC files' data visualization effective and clarified?")
-
-        # Question 5:
-        # Were there any specific features that you found useful or lacking?
-        fourth_question = ""
-        fourth_question = st.text_area("Were there any specific features that you found useful or lacking?")
-
-        # Question 6:
-        # Is there anything you'd like to bring up about the website's design, aesthetics, and organization?
-        fifth_question = ""
-        fifth_question = st.text_area(
-            "Is there anything you'd like to bring up about the website's design, aesthetics, and organization?")
-
-        # Question 7:
-        # In your own words, how was your experience using the website?
-        sixth_question = ""
-        sixth_question = st.text_area("In your own words, how was your experience using the website?")
-
-        # Question 8:
-        # Any suggestions or ideas for enhancing the website?
-        seventh_question = ""
-        seventh_question = st.text_area("Any suggestions or ideas for enhancing the website?")
-
     # Overall Impression Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Overall Impression</h3>", unsafe_allow_html=True)
+        was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"])
+        was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"])
+        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive?", ["Yes", "No"])
+        was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"])
 
-        # Create a Row with Radio Boxes using Columns and Markdown
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown(
-                "a. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="a"))
-        with col2:
-            st.markdown(
-                "b. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="b"))
-        with col3:
-            st.markdown(
-                "c. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="c"))
-
-        # Question 9:
-        # What is the likelihood that you will visit the website again?
-        likelihood_to_visit_again = st.selectbox("What is the likelihood that you will visit the website again?",
-                                                 ["Extremely likely", "Very likely", "Moderately likely",
-                                                  "Slightly likely", "Not at all likely"])
-
-    # Contact Information Container
+    # NetCDF4 Container
     with st.container():
-        contact_info_markdown = ""
-        email_address = ""
-        contact_info_markdown = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>", unsafe_allow_html=True)
-        email_address = st.text_area("Email Address:")
+        st.markdown("<h3 style='color: #0077cc;'>NetCDF4</h3>", unsafe_allow_html=True)
+        have_used_net_files = st.radio("Have you ever used NetCDF4 files before?", ["Yes", "No"])
+        upload_own_files = st.radio("Did you upload your own files or use the example dataset?",
+                                    ["I uploaded my own files.", "I used the example dataset."])
 
-    # User Demographics Container
+    # Data Visualization Container
     with st.container():
-        user_demo = ""
-        age = ""
-        occupation = ""
-        industry = ""
-        user_demo = st.markdown("<h3 style='color: #0077cc;'>User Demographics: Optional</h3>", unsafe_allow_html=True)
-        age = st.text_area("Age:")
-        occupation = st.text_area("Occupation:")
-        industry = st.text_area("Industry:")
+        st.markdown("<h3 style='color: #0077cc;'>Data Visualization</h3>", unsafe_allow_html=True)
+        useful_visual = st.radio("Do you think the visualizations generated are useful?", ["Yes", "No"])
+        useful_features = st.text_area("Which specific features or aspects of the visualizations did you find most"
+                                       "useful or interesting?")
+        confusing_features = st.radio("Were there any features or aspects of the visualizations that you found"
+                                      "confusing or unnecessary?", ["Yes", "No"])
+        if confusing_features == "Yes":
+            what_confusing = st.text_area("What did you find confusing or unnecessary?")
+        suggestions_visual = st.text_area("Do you have any suggestions for improving the visualizations generated in"
+                                          "the dataset management page?")
+
+    # Performance Container
+    with st.container():
+        st.markdown("<h3 style='color: #0077cc;'>Performance</h3>", unsafe_allow_html=True)
+        performance_question = st.text_area("How was the website's loading speed and responsiveness? Did you encounter"
+                                            "any technical issues?")
+
+    # User Information Container
+    with st.container():
+        st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
+        email_address = st.text_input("Email:")
+        is_student = st.radio("Are you a student?", ["Yes", "No"])
+        if is_student == "Yes":
+            field_of_study = st.text_input("What is your Field of Study?")
+
+    # Additional Container
+    with st.container():
+        st.markdown("<h3 style='color: #0077cc;'>Additional</h3>", unsafe_allow_html=True)
+        additional_comments = st.text_area("Please share any additional comments or suggestions you have for us.")
 
     # Privacy and Data Usage Container
     with st.container():
-        privacy_markdown = ""
-        privacy_statement = ""
-        privacy_markdown = st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
-        privacy_statement = st.markdown(
-            "We will use your feedback data and ensure that your responses will be kept confidential and used only for improving this website.")
+        st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
+        st.markdown("We will use your feedback data and ensure that your responses will be kept confidential and used"
+                    "only for improving this website.")
 
     # Sending Feedback Function
     if st.button("SEND"):
         # Generate PDF
         feedback_data = {
-            "First Time Visitor": first_time_visitor,
-            "Primary Reason For visiting the website": primary_reason,
-            "Overall Satisfaction Rating": overall_satisfaction,
-            "Found What Needed": found_what_needed,
-            "Additional Info": additional_info,
-            "Ease of Finding Info": ease_of_finding_info,
-            "Overall Impression (a)": st.session_state.a,
-            "Overall Impression (b)": st.session_state.b,
-            "Overall Impression (c)": st.session_state.c,
-            "Likelihood to Visit Again": likelihood_to_visit_again,
-            "Additional Comments": additional_comments,
+            "Was Easy to Navigate": was_easy_navigate,
+            "Was Homepage Informative": was_homepage_informative,
+            "Was Data Management Page Intuitive": was_data_manage_intuitive,
+            "Was About Page Informative": was_about_page_informative,
+            "Has User Used NetCDF4 Files Before": have_used_net_files,
+            "Is User's Own Files": upload_own_files,
+            "Is Visualization Useful": useful_visual,
+            "Useful Features in Visualization": useful_features,
+            "Confusing Parts for Visualization": what_confusing,
+            "Suggestions for Visuals": suggestions_visual,
+            "Feedback Performance": performance_question,
+            "Email Address": email_address,
+            "Field of Study": field_of_study,
+            "Additional Comments": additional_comments
         }
         pdf_filename = generate_pdf(feedback_data)
 
