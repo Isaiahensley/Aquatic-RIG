@@ -30,11 +30,6 @@ def feedback_page():
         first_time_visitor = st.radio("Is this the first time you are visiting the website?", ["Yes", "No"])
         primary_reason = st.text_input("What is the PRIMARY reason you came to the site?")
 
-        # Slider for overall satisfaction rating
-        st.write("Overall Satisfaction Rating:")
-        st.write("Please rate your overall satisfaction with the website:")
-        overall_satisfaction = st.slider('Select a rating:', min_value=1, max_value=5, step=1)
-
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Content Feedback</h3>", unsafe_allow_html=True)
         found_what_needed = st.radio("Did you find what you needed?", ["Yes, all of it", "Yes, some of it", "No, none of it"])
@@ -49,11 +44,11 @@ def feedback_page():
         # Create a row with radio boxes using columns and Markdown
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown("a. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="a"))
+            st.markdown(st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="a"))
         with col2:
-            st.markdown("b. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="b"))
+            st.markdown(st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="b"))
         with col3:
-            st.markdown("c. " + st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="c"))
+            st.markdown(st.radio("", ["Below Expectations", "Meets Expectations", "Exceeds Expectations"], key="c"))
 
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Likelihood to Visit Again</h3>", unsafe_allow_html=True)
@@ -64,7 +59,7 @@ def feedback_page():
     with st.container():
         first_field = ""
         first_field_q = ""
-        first_field = st.markdown("<h3 style='color: #0077cc;'>Ease of Use</h3>")
+        first_field = st.markdown("<h3 style='color: #0077cc;'>Ease of Use</h3>", unsafe_allow_html=True)
         first_field_q = st.markdown("How easy was it to navigate the website and interact with the data visualization tools?")
         first_radio = st.radio("", ["Very Easy", "Easy", "Moderate", "Hard", "Very Hard"])
 
@@ -72,35 +67,35 @@ def feedback_page():
     with st.container():
         second_field = ""
         second_field_q = ""
-        second_field = st.markdown("<h3 style='color: #0077cc;'>Design and Layout</h3>")
+        second_field = st.markdown("<h3 style='color: #0077cc;'>Design and Layout</h3>", unsafe_allow_html=True)
         second_field_q = st.text_area("Is there anything you'd like to bring up about the website's design, aesthetics, and organization?")
 
     # Third Field
     with st.container():
         third_field = ""
         third_field_q = ""
-        third_field = st.markdown("<h3 style='color: #0077cc;'>Performance</h3>")
+        third_field = st.markdown("<h3 style='color: #0077cc;'>Performance</h3>", unsafe_allow_html=True)
         third_field_q = st.text_area("How was the website's loading speed and responsiveness? Did you enounter any technical issues?")
 
     # Fourth Field
     with st.container():
         fourth_field = ""
         fourth_field_q = ""
-        fourth_field = st.markdown("<h3 style='color: #0077cc;'>Data Visualization Quality</h3>")
+        fourth_field = st.markdown("<h3 style='color: #0077cc;'>Data Visualization Quality</h3>", unsafe_allow_html=True)
         fourth_field_q = st.text_area("Were NC files' data visualization effective and clarified?")
 
     # Fifth Field
     with st.container():
         fifth_field = ""
         fifth_field_q = ""
-        fifth_field = st.markdown("<h3 style='color: #0077cc;'>Features and Functionality</h3>")
+        fifth_field = st.markdown("<h3 style='color: #0077cc;'>Features and Functionality</h3>", unsafe_allow_html=True)
         fifth_field_q = st.text_area("Were there any specific features that you found useful or lacking?")
 
     # Sixth Field
     with st.container():
         sixth_field = ""
         sixth_field_q = ""
-        sixth_field = st.markdown("<h3 style='color: #0077cc;'>Suggestions for Improvement</h3>")
+        sixth_field = st.markdown("<h3 style='color: #0077cc;'>Suggestions for Improvement</h3>", unsafe_allow_html=True)
         sixth_field_q = st.text_area("Any suggestions or ideas for enhancing the website?")
 
     # Seventh Field
@@ -109,7 +104,7 @@ def feedback_page():
         seventh_field_q1 = ""
         seventh_field_q2 = ""
         seventh_field_q3 = ""
-        seventh_field = st.markdown("<h3 style='color: #0077cc;'>User Demographics: Optional</h3>")
+        seventh_field = st.markdown("<h3 style='color: #0077cc;'>User Demographics: Optional</h3>", unsafe_allow_html=True)
         seventh_field_q1 = st.text_area("Age:")
         seventh_field_q2 = st.text_area("Occupation:")
         seventh_field_q3 = st.text_area("Industry:")
@@ -118,21 +113,21 @@ def feedback_page():
     with st.container():
         eighth_field = ""
         eighth_field_q = ""
-        eighth_field = st.markdown("<h3 style='color: #0077cc;'>User Experience</h3>")
+        eighth_field = st.markdown("<h3 style='color: #0077cc;'>User Experience</h3>", unsafe_allow_html=True)
         eighth_field_q = st.text_area("In your own words, how was your experience using the website?")
 
     # Ninth Field
     with st.container():
         ninth_field = ""
         ninth_field_q = ""
-        ninth_field = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>")
+        ninth_field = st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>", unsafe_allow_html=True)
         ninth_field_q = st.text_area("Email Address:")
 
     # Tenth Field
     with st.container():
         tenth_field = ""
         tenth_field_q = ""
-        tenth_field = st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>")
+        tenth_field = st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
         tenth_field_q = st.markdown("We will use your feedback data and ensure that your responses will be kept confidential and used only for improving this website.")
 
     if st.button("SEND"):
