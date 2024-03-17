@@ -139,32 +139,70 @@ def data_check(files_upload, all_datetime_strings, depth_levels, variables_not_d
 
 
 def visualization_selectbox():
+    help_input = (
+        # Heat Map Description
+        "**Heat Map**  \n"
+        "This tool is designed for visualizing a chosen variable by coloring each data point according to its value. "
+        "Higher values are illustrated with warm colors like red, while lower values are shown in cooler colors "
+        "like blue.  \n"
+        
+        # Empty line
+        "  \n" 
+        
+        # Quiver Plot Description
+        "**Quiver Plot**  \n"
+        "This tool is designed for visualizing vector fields like ocean currents. Each arrows size and direction "
+        "visualizes the flow's direction and velocity. This visualization requires the horizontal (u) and vertical (v) "
+        "vectors.  \n"
+    )
     selected_visualization = st.sidebar.selectbox(
         "Visualization Option:",
         options=["None", "Heat Map", "Quiver Plot"],
-        index=0  # Default to the first option
+        index=0,  # Default to the first option
+        help=help_input
     )
     return selected_visualization
 
 
 def variable_selectbox(variables_not_dimensions):
+    help_input = (
+        # Variable Description
+        "Select a variable that represents a distinct measurable quantity in your dataset, containing data across "
+        "various Latitude and Longitude coordinates."
+    )
     selected_variable = st.sidebar.selectbox(
-        "Choose a variable for analysis:",
-        options=["None"] + variables_not_dimensions
+        "Select Variable:",
+        options=["None"] + variables_not_dimensions,
+        index=0,  # Default to the first option
+        help=help_input
     )
     return selected_variable
 
 def xvelocity_selectbox(variables_not_dimensions):
+    help_input = (
+        # Variable Description
+        "This variable captures the movement in the horizontal direction, typically representing the east-west "
+        "component of the current. It helps determine the direction and velocity as currents move horizontally."
+    )
     selected_xvelocity = st.sidebar.selectbox(
-        "Choose the velocity in the X direction:",
-        options=["None"] + variables_not_dimensions
+        "Select Horizontal (u) Variable:",
+        options=["None"] + variables_not_dimensions,
+        index=0,  # Default to the first option
+        help=help_input
     )
     return selected_xvelocity
 
 def yvelocity_selectbox(variables_not_dimensions):
+    help_input = (
+        # Variable Description
+        "This variable captures the movement in the vertical direction, typically representing the north-south "
+        "component of the current. It helps determine the direction and velocity as currents move vertically."
+    )
     selected_yvelocity = st.sidebar.selectbox(
-        "Choose the velocity in the Y direction:",
-        options=["None"] + variables_not_dimensions
+        "Select Vertical (v) Variable:",
+        options=["None"] + variables_not_dimensions,
+        index=0,  # Default to the first option
+        help=help_input
     )
     return selected_yvelocity
 
