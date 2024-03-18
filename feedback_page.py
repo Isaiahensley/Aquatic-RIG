@@ -49,7 +49,7 @@ def feedback_page():
         useful_visual = st.radio("Do you think the visualizations generated are useful?", ["Yes", "No"])
         useful_features = st.text_area("Which specific features or aspects of the visualizations did you find most"
                                        "useful or interesting?")
-        confusing_features = st.radio("Were there any features or aspects of the visualizations that you found"
+        confusing_features = st.radio("Are there any features or aspects of the visualizations that you found"
                                       "confusing or unnecessary?", ["Yes", "No"])
         if confusing_features == "Yes":
             what_confusing = st.text_area("What did you find confusing or unnecessary?")
