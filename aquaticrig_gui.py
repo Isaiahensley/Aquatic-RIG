@@ -5,6 +5,10 @@ from feedback_page import feedback_page
 from datasetmanagement_page import dataset_management_page
 import logging
 from dropbox_utils import DropboxLogger
+from token_file import DROPBOX_ACCESS_TOKEN
+
+
+dropbox_logger = DropboxLogger(DROPBOX_ACCESS_TOKEN)
 class MultiApp:
     def __init__(self):
         self.apps = []

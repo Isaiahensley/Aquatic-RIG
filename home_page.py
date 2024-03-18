@@ -24,7 +24,7 @@ def home_page():
     right_col.markdown("")
     right_col.markdown("Created by Isaiah Hensley, Maria Black, Sudeep Paudel, Richard Peters")
     right_col.markdown("Louisiana State University Shreveport")
-
+    st.image("images/HeatMap.gif", caption="Sea Surface Temperature")
 
     st.divider()
     st.write("Test")

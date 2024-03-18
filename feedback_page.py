@@ -3,7 +3,12 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import base64
 from io import BytesIO
-
+import dropbox
+from io import BytesIO
+import logging
+from dropbox_utils import DropboxLogger
+from token_file import DROPBOX_ACCESS_TOKEN
+from datetime import datetime
 
 def generate_pdf(data):
     pdf_filename = "feedback_report.pdf"
@@ -19,100 +24,108 @@ def generate_pdf(data):
         y_position -= 15
 
     pdf_canvas.save()
-    return pdf_filename
+
+    # Read the content of the PDF file
+    with open(pdf_filename, "rb") as f:
+        pdf_content = f.read()
+
+    return pdf_filename, pdf_content
 
 
 def feedback_page():
     st.title("Website Feedback Form")
 
+    # Overall Impression Container
     with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
-        first_time_visitor = st.radio("Is this the first time you are visiting the website?", ["Yes", "No"])
-        primary_reason = st.text_input("What is the PRIMARY reason you came to the site?")
+        st.markdown("<h3 style='color: #0077cc;'>Overall Impression</h3>", unsafe_allow_html=True)
+        was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"])
+        was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"])
+        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive?", ["Yes", "No"])
+        was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"])
 
+    # NetCDF4 Container
     with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Content Feedback</h3>", unsafe_allow_html=True)
-        found_what_needed = st.radio("Did you find what you needed?", ["Yes, all of it", "Yes, some of it", "No, none of it"])
-        additional_info = ""
-        if found_what_needed == "No, none of it":
-            additional_info = st.text_area("If you did not find any or all of what you needed, please tell us what information you were looking for.")
+        st.markdown("<h3 style='color: #0077cc;'>NetCDF4</h3>", unsafe_allow_html=True)
+        have_used_net_files = st.radio("Have you ever used NetCDF4 files before?", ["Yes", "No"])
+        upload_own_files = st.radio("Did you upload your own files or use the example dataset?",
+                                    ["I uploaded my own files.", "I used the example dataset."])
 
+    # Data Visualization Container
     with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Likelihood to Visit Again</h3>", unsafe_allow_html=True)
-        likelihood_to_visit_again = st.selectbox("What is the likelihood that you will visit the website again?", ["Extremely likely", "Very likely", "Moderately likely", "Slightly likely", "Not at all likely"])
-        additional_comments = st.text_area("Please add any comments you have for improving the website.")
+        st.markdown("<h3 style='color: #0077cc;'>Data Visualization</h3>", unsafe_allow_html=True)
+        useful_visual = st.radio("Do you think the visualizations generated are useful?", ["Yes", "No"])
+        useful_features = st.text_area("Which specific features or aspects of the visualizations did you find most"
+                                       "useful or interesting?")
+        confusing_features = st.radio("Were there any features or aspects of the visualizations that you found"
+                                      "confusing or unnecessary?", ["Yes", "No"])
+        if confusing_features == "Yes":
+            what_confusing = st.text_area("What did you find confusing or unnecessary?")
+        suggestions_visual = st.text_area("Do you have any suggestions for improving the visualizations generated in"
+                                          "the dataset management page?")
 
-   # Second Field
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Design and Layout</h3>", unsafe_allow_html=True)
-        second_field_q = st.text_area("Is there anything you'd like to bring up about the website's design, aesthetics, and organization?")
-
-    # Third Field
+    # Performance Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Performance</h3>", unsafe_allow_html=True)
-        third_field_q = st.text_area("How was the website's loading speed and responsiveness? Did you enounter any technical issues?")
+        performance_question = st.text_area("How was the website's loading speed and responsiveness? Did you encounter"
+                                            "any technical issues?")
 
-    # Fourth Field
+    # User Information Container
     with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Data Visualization Quality</h3>", unsafe_allow_html=True)
-        fourth_field_q = st.text_area("Were NC files' data visualization effective and clarified?")
+        st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
+        email_address = st.text_input("Email:")
+        is_student = st.radio("Are you a student?", ["Yes", "No"])
+        if is_student == "Yes":
+            field_of_study = st.text_input("What is your Field of Study?")
 
-    # Fifth Field
+    # Additional Container
     with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Features and Functionality</h3>", unsafe_allow_html=True)
-        fifth_field_q = st.text_area("Were there any specific features that you found useful or lacking?")
+        st.markdown("<h3 style='color: #0077cc;'>Additional</h3>", unsafe_allow_html=True)
+        additional_comments = st.text_area("Please share any additional comments or suggestions you have for us.")
 
-    # Sixth Field
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Suggestions for Improvement</h3>", unsafe_allow_html=True)
-        sixth_field_q = st.text_area("Any suggestions or ideas for enhancing the website?")
-
-    # Seventh Field
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>User Demographics: Optional</h3>", unsafe_allow_html=True)
-        seventh_field_q1 = st.text_area("Age:")
-        seventh_field_q2 = st.text_area("Occupation:")
-        seventh_field_q3 = st.text_area("Industry:")
-
-    # Eighth Field
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>User Experience</h3>", unsafe_allow_html=True)
-        eighth_field_q = st.text_area("In your own words, how was your experience using the website?")
-
-    # Ninth Field
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>Contact Information</h3>", unsafe_allow_html=True)
-        ninth_field_q = st.text_area("Email Address:")
-
-    # Tenth Field
+    # Privacy and Data Usage Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
-        tenth_field_q = st.markdown("We will use your feedback data and ensure that your responses will be kept confidential and used only for improving this website.")
-
+        st.markdown("We will use your feedback data and ensure that your responses will be kept confidential and used"
+                    "only for improving this website.")
     if st.button("SEND"):
         # Generate PDF
         feedback_data = {
-            "First Time Visitor": first_time_visitor,
-            "Primary Reason For visiting the website": primary_reason,
-            "Found What Needed": found_what_needed,
-            "Additional Info": additional_info,
-            "Likelihood to Visit Again": likelihood_to_visit_again,
-            "Additional Comments": additional_comments,
-            "Design and Layout": second_field_q,
-            "Performance": third_field_q,
-            "Data Visualization Quality": fourth_field_q,
-            "Feature and Functionality": fifth_field_q,
-            "Suggestion for Improvements": sixth_field_q,
-            "Age": seventh_field_q1,
-            "Occupation": seventh_field_q2,
-            "Industry": seventh_field_q3,
-            "User Experience": eighth_field_q,
-            "Email Address": ninth_field_q,
+            "Was Easy to Navigate": was_easy_navigate,
+            "Was Homepage Informative": was_homepage_informative,
+            "Was Data Management Page Intuitive": was_data_manage_intuitive,
+            "Was About Page Informative": was_about_page_informative,
+            "Has User Used NetCDF4 Files Before": have_used_net_files,
+            "Is User's Own Files": upload_own_files,
+            "Is Visualization Useful": useful_visual,
+            "Useful Features in Visualization": useful_features,
+            "Confusing Parts for Visualization": what_confusing,
+            "Suggestions for Visuals": suggestions_visual,
+            "Feedback Performance": performance_question,
+            "Email Address": email_address,
+            "Field of Study": field_of_study,
+            "Additional Comments": additional_comments
         }
-        pdf_filename = generate_pdf(feedback_data)
+        user_email = email_address;
+        pdf_filename, pdf_content = generate_pdf(feedback_data)
 
-        # Display success message
-        st.markdown("### Generated PDF:")
+        dropbox_logger = DropboxLogger(DROPBOX_ACCESS_TOKEN)
+        dropbox_logger.upload_file(pdf_content, pdf_filename, st, user_email)
+
+        # Display PDF
+        with open(pdf_filename, "rb") as f:
+            pdf_contents = f.read()
+
+        # Convert PDF to base64 encoding
+        pdf_base64 = base64.b64encode(pdf_contents).decode("utf-8")
+
+        # Display download link
+        st.markdown(f"### Generated PDF:")
+        st.markdown(
+            f'<a href="data:application/pdf;base64,{pdf_base64}" download="{pdf_filename}">Download PDF</a>',
+            unsafe_allow_html=True,
+        )
+        st.markdown("---")
+        st.write(pdf_filename)
         st.success("Thank you for your feedback! 🚀")
 
     if __name__ == "__main__":
