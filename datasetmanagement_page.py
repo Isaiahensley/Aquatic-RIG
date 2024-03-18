@@ -15,9 +15,6 @@ def initialize_state():
         st.session_state['files_upload'] = None
 
 
-initialize_state()
-
-
 # Define steps for the workflow
 def increment_step():
     st.session_state['current_step'] += 1
@@ -30,6 +27,7 @@ def decrement_step():
 
 # Main function to manage the dataset page
 def dataset_management_page():
+    initialize_state()
 
     # ------------------------
     # Step 0: File Upload Page
