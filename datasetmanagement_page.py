@@ -7,71 +7,147 @@ from datetime import datetime
 from io import BytesIO
 
 
+# Initialize session_state variables safely
+def initialize_state():
+    if 'current_step' not in st.session_state:
+        st.session_state['current_step'] = 0
+    if 'files_upload' not in st.session_state:
+        st.session_state['files_upload'] = None
+
+
+initialize_state()
+
+
+# Define steps for the workflow
+def increment_step():
+    st.session_state['current_step'] += 1
+
+
+def decrement_step():
+    if st.session_state['current_step'] > 0:
+        st.session_state['current_step'] -= 1
+
+
+# Main function to manage the dataset page
 def dataset_management_page():
-    # File uploader for multiple .nc files
-    files_upload = file_uploader()
 
-    # Extract data from uploaded files
-    if files_upload is not None:
-        all_datetime_strings, depth_levels, variables_not_dimensions, datetime_to_file_map = extract_file_data(
-            files_upload)
+    # ------------------------
+    # Step 0: File Upload Page
+    # ------------------------
 
-        # Checks if all data exists for visualization
-        if data_check(files_upload, all_datetime_strings, depth_levels, variables_not_dimensions,
-                      datetime_to_file_map):
-            # Creates Visualization Option selectbox and returns user selection
+    if st.session_state['current_step'] == 0:
+        st.session_state['files_upload'] = file_uploader()
+        next_button(st.session_state['files_upload'])
+
+    # Proceed if files are uploaded
+    if st.session_state['files_upload']:
+        all_datetime_strings, depth_levels, variables_not_dimensions, datetime_to_file_map = extract_file_data(st.session_state['files_upload'])
+
+        # -----------------------------------
+        # Step 1: Visualization Selection Page
+        # -----------------------------------
+
+        if st.session_state['current_step'] == 1:
+
+            # Visualization Selection box
             selected_visualization = visualization_selectbox()
 
-            # --------------HEAT MAP VISUALIZATION-----------
-            # If selection is "Heat Map"...
-            if selected_visualization == "Heat Map":
+            # Create columns that let the next and back buttons display side by side.
+            left, right, filler = st.columns([1, 1, 19])
+
+            # If a visualization option is chosen...
+            if selected_visualization != "None":
+                st.session_state['selected_visualization'] = selected_visualization
+
+            # Put Next button on the right (after condition is met)
+            # This will take you to the Variable Selection Page
+            with right:
+                next_button(selected_visualization != "None")
+
+            # Put Back button on the left
+            # This will take you to the File Upload Page
+            with left:
+                back_button()
+
+        # -------------------------------
+        # Step 2: Variable Selection Page
+        # -------------------------------
+
+        if st.session_state.current_step == 2 and 'selected_visualization' in st.session_state:
+
+            # If Heat Map is selected...
+            if st.session_state.selected_visualization == "Heat Map":
+
+                # Ask user to select variable for heat map
                 selected_variable = variable_selectbox(variables_not_dimensions)
+
+                # Create columns that let the next and back buttons display side by side.
+                left, right, filler = st.columns([1, 1, 19])
+
+                # If a variable has been selected...
                 if selected_variable != "None":
-                    # Create Time selectbox
-                    selected_datetime_str, associated_files = time_selectbox(datetime_to_file_map, all_datetime_strings)
+                    st.session_state.selected_variable = selected_variable
 
-                    # Create Depth slider
-                    selected_depth = depth_slider(depth_levels)
+                # Put Next button on the right (after variable is selected)
+                # This will take you to the Visualize Page (Heat Map)
+                with right:
+                    next_button(selected_variable != "None")
 
-                    associated_files = datetime_to_file_map[selected_datetime_str]
-                    if associated_files:
-                        # filename variable here would be misleading, it's actually the file content
-                        file_content = next(
-                            (file.getvalue() for file in files_upload if file.name == associated_files[0]),
-                            None)
-
-                        if file_content:
-                            # Call the heatmap function with the file content
-                            heatmap(variables_not_dimensions, file_content, selected_datetime_str, selected_depth,
-                                    selected_variable)
-
-            # --------------QUIVER PLOT VISUALIZATION-----------
-            # If selection is "Quiver Plot"...
-            elif selected_visualization == "Quiver Plot":
+            elif st.session_state.selected_visualization == "Quiver Plot":
                 selected_xvelocity = xvelocity_selectbox(variables_not_dimensions)
                 selected_yvelocity = yvelocity_selectbox(variables_not_dimensions)
-                # If both selections aren't "None"
-                if selected_xvelocity != "None" and selected_yvelocity != "None":
-                    # If both selections aren't the same variable.
-                    if selected_xvelocity != selected_yvelocity:
-                        # Create Time selectbox
-                        selected_datetime_str, associated_files = time_selectbox(datetime_to_file_map,
-                                                                                 all_datetime_strings)
 
-                        # Create Depth slider
-                        selected_depth = depth_slider(depth_levels)
+                # Create columns that let the next and back buttons display side by side.
+                left, right, filler = st.columns([1, 1, 19])
 
-                        associated_files = datetime_to_file_map[selected_datetime_str]
-                        if associated_files:
-                            # filename variable here would be misleading, it's actually the file content
-                            file_content = next(
-                                (file.getvalue() for file in files_upload if file.name == associated_files[0]),
-                                None)
+                if selected_xvelocity != "None" and selected_yvelocity != "None" and selected_xvelocity != selected_yvelocity:
+                    st.session_state.selected_xvelocity = selected_xvelocity
+                    st.session_state.selected_yvelocity = selected_yvelocity
 
-                            if file_content:
-                                # Call the heatmap function with the file content
-                                quiverplot(variables_not_dimensions, file_content, selected_datetime_str,
-                                           selected_depth, selected_xvelocity, selected_yvelocity)
+                # Put Next button on the right (after variable is selected)
+                # This will take you to the Visualize page (Quiver Plot)
+                with right:
+                    next_button(selected_xvelocity != "None" and selected_yvelocity != "None" and selected_xvelocity != selected_yvelocity)
+
+            # Put Back button on the left
+            # This will take you to the Visualization Selection Page
+            with left:
+                back_button()
+
+        # --------------------------
+        # Step 3: Visualize Page
+        # --------------------------
+
+        if st.session_state.current_step == 3:
+
+            # This creates left column (1/3 screen) and right column (2/3) screen
+            left_column, right_column = st.columns([1, 3])
+            with left_column:
+                selected_datetime_str, associated_files = time_selectbox(datetime_to_file_map, all_datetime_strings)
+                selected_depth = depth_slider(depth_levels)
+                st.markdown("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True)
+                back_button()
+            if associated_files:
+                file_content = next(
+                    (file.getvalue() for file in st.session_state.files_upload if file.name == associated_files[0]),
+                    None)
+
+                # Create Heat Map based on variable selected
+                if st.session_state.selected_visualization == "Heat Map" and 'selected_variable' in st.session_state:
+                    with right_column:
+                        heatmap(variables_not_dimensions, file_content, selected_datetime_str, selected_depth, st.session_state.selected_variable)
+
+                # Create Quiver Plot based on U and V variables selected
+                elif st.session_state.selected_visualization == "Quiver Plot" and 'selected_xvelocity' in st.session_state and 'selected_yvelocity' in st.session_state:
+                    with right_column:
+                        quiverplot(variables_not_dimensions, file_content, selected_datetime_str, selected_depth, st.session_state.selected_xvelocity, st.session_state.selected_yvelocity)
+
+            # This will take you to the Variable Selection Page
+            #with left_column:
+                #placeholder1 = st.empty()
+                #back_button()
+
+
 def file_uploader():
     files_upload = st.file_uploader("Upload datasets", type=["nc"], accept_multiple_files=True)
     return files_upload
@@ -138,6 +214,14 @@ def data_check(files_upload, all_datetime_strings, depth_levels, variables_not_d
     return check
 
 
+def back_button():
+    st.button("Back", on_click=decrement_step)
+
+
+def next_button(condition):
+    st.button("Next", on_click=increment_step, disabled=not condition)
+
+
 def visualization_selectbox():
     help_input = (
         # Heat Map Description
@@ -155,7 +239,7 @@ def visualization_selectbox():
         "visualizes the flow's direction and velocity. This visualization requires the horizontal (u) and vertical (v) "
         "vectors.  \n"
     )
-    selected_visualization = st.sidebar.selectbox(
+    selected_visualization = st.selectbox(
         "Visualization Option:",
         options=["None", "Heat Map", "Quiver Plot"],
         index=0,  # Default to the first option
@@ -170,7 +254,7 @@ def variable_selectbox(variables_not_dimensions):
         "Select a variable that represents a distinct measurable quantity in your dataset, containing data across "
         "various Latitude and Longitude coordinates."
     )
-    selected_variable = st.sidebar.selectbox(
+    selected_variable = st.selectbox(
         "Select Variable:",
         options=["None"] + variables_not_dimensions,
         index=0,  # Default to the first option
@@ -184,7 +268,7 @@ def xvelocity_selectbox(variables_not_dimensions):
         "This variable captures the movement in the horizontal direction, typically representing the east-west "
         "component of the current. It helps determine the direction and velocity as currents move horizontally."
     )
-    selected_xvelocity = st.sidebar.selectbox(
+    selected_xvelocity = st.selectbox(
         "Select Horizontal (u) Variable:",
         options=["None"] + variables_not_dimensions,
         index=0,  # Default to the first option
@@ -198,7 +282,7 @@ def yvelocity_selectbox(variables_not_dimensions):
         "This variable captures the movement in the vertical direction, typically representing the north-south "
         "component of the current. It helps determine the direction and velocity as currents move vertically."
     )
-    selected_yvelocity = st.sidebar.selectbox(
+    selected_yvelocity = st.selectbox(
         "Select Vertical (v) Variable:",
         options=["None"] + variables_not_dimensions,
         index=0,  # Default to the first option
@@ -209,24 +293,24 @@ def yvelocity_selectbox(variables_not_dimensions):
 def time_selectbox(datetime_to_file_map, all_datetime_strings):
     # Display time select box
     if all_datetime_strings:
-        selected_datetime_str = st.sidebar.selectbox(
+        selected_datetime_str = st.selectbox(
             "Time:",
             options=all_datetime_strings,
             index=0  # Default to the first option
         )
         associated_files = datetime_to_file_map[selected_datetime_str]
     else:
-        st.sidebar.write("No datetime values found.")
+        st.write("No datetime values found.")
     return selected_datetime_str, associated_files
 
 
 def depth_slider(depth_levels):
     # Display depth slider
     if depth_levels is not None:
-        selected_depth = st.sidebar.slider("Depth", 0, depth_levels - 1, value=0)
+        selected_depth = st.slider("Depth", 0, depth_levels - 1, value=0)
         # st.write(f"Selected depth level: {selected_depth}")
     else:
-        st.sidebar.write("No depth information available.")
+        st.write("No depth information available.")
     return selected_depth
 
 
@@ -280,7 +364,7 @@ def heatmap(variables_not_dimensions, file_content, datetime_str, depth, variabl
         c = ax.pcolormesh(lon, lat, selected_data, cmap='coolwarm')
 
         # Adjust color
-        color = "lightblue"
+        color = "white"
 
         # Set axis labels with specified color
         ax.set_xlabel('Longitude', color=color)
@@ -347,7 +431,7 @@ def quiverplot(variables_not_dimensions, file_content, datetime_str, depth, sele
 
         # Setting up the plot with a dark background for white elements to stand out
         plt.style.use('dark_background')
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(10, 7.5))
         q = ax.quiver(Lon, Lat, u_data, v_data, color='white')  # Set arrow color to white
 
         # Include a key to indicate scale, with text in white
