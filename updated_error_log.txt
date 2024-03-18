@@ -1,0 +1,36 @@
+
+An error occurred in Feedback: __init__() missing 1 required positional argument: 'st'
+An error occurred in Feedback: expected request_binary as binary type, got <class 'str'>
+An error occurred in Feedback: files_upload() got multiple values for argument 'mode'
+An error occurred in Feedback: 'DropboxLogger' object has no attribute 'upload_file'
+An error occurred in Feedback: __init__() takes 2 positional arguments but 3 were given
+An error occurred in Feedback: __init__() takes 2 positional arguments but 3 were given
+An error occurred in Feedback: expected request_binary as binary type, got <class 'str'>
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: too many values to unpack (expected 2)
+An error occurred in Feedback: 'feedback_report_1709520521.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedback_report_1709520653.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedback_report1709520677.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedback_report_1709523739.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedback_report_1709523744.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedback_report_1709584742.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: '1709585078feedbackreport.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedbackreport.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: 'feedback_report_78c12c4e-750c-45ca-8932-a47ab519714a.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+An error occurred in Feedback: name 'time' is not defined
+An error occurred in Feedback: upload_file() missing 1 required positional argument: 'st'
+An error occurred in Feedback: upload_file() missing 2 required positional arguments: 'file_name' and 'st'
+An error occurred in Feedback: upload_file() missing 1 required positional argument: 'st'
+An error occurred in Feedback: feedback_page() missing 1 required positional argument: 'self'
+An error occurred in Feedback: feedback_page() missing 1 required positional argument: 'self'
+An error occurred in Feedback: 'str' object has no attribute 'value'
+An error occurred in Feedback: upload_file() missing 1 required positional argument: 'user_email'
+An error occurred in Feedback: 'str' object has no attribute 'value'
+An error occurred in Feedback: 'str' object has no attribute 'value'
+An error occurred in Feedback: 'str' object has no attribute 'value'
+2024-03-05 20:46:04 - An error occurred in Feedback: upload_file() takes 4 positional arguments but 5 were given

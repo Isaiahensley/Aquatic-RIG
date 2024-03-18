@@ -1,0 +1,46 @@
+2024-03-03 18:43:57,393 - ERROR - An error occurred in Feedback: __init__() missing 1 required positional argument: 'st'
+2024-03-03 18:46:01,606 - ERROR - An error occurred in Feedback: __init__() missing 1 required positional argument: 'st'
+2024-03-03 18:48:05,084 - ERROR - An error occurred in Feedback: __init__() missing 1 required positional argument: 'st'
+2024-03-03 18:50:53,612 - ERROR - An error occurred in Feedback: expected request_binary as binary type, got <class 'str'>
+2024-03-03 18:52:35,886 - ERROR - An error occurred in Feedback: files_upload() got multiple values for argument 'mode'
+2024-03-03 19:11:21,216 - ERROR - An error occurred in Feedback: 'DropboxLogger' object has no attribute 'upload_file'
+2024-03-03 19:11:21,217 - ERROR - An error occurred in Feedback: 'DropboxLogger' object has no attribute 'upload_file'
+2024-03-03 19:28:42,824 - ERROR - An error occurred in Feedback: __init__() takes 2 positional arguments but 3 were given
+2024-03-03 19:28:42,825 - ERROR - An error occurred in Feedback: __init__() takes 2 positional arguments but 3 were given
+2024-03-03 19:31:32,211 - ERROR - An error occurred in Feedback: __init__() takes 2 positional arguments but 3 were given
+2024-03-03 19:31:32,212 - ERROR - An error occurred in Feedback: __init__() takes 2 positional arguments but 3 were given
+2024-03-03 19:56:42,472 - ERROR - An error occurred in Feedback: expected request_binary as binary type, got <class 'str'>
+2024-03-03 19:58:22,569 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:03:26,068 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:06:43,415 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:09:05,642 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:09:35,631 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:10:38,425 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:10:41,726 - ERROR - An error occurred in Feedback: too many values to unpack (expected 2)
+2024-03-03 20:48:41,857 - ERROR - An error occurred in Feedback: 'feedback_report_1709520521.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-03 20:50:53,643 - ERROR - An error occurred in Feedback: 'feedback_report_1709520653.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-03 20:51:17,314 - ERROR - An error occurred in Feedback: 'feedback_report1709520677.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-03 21:42:19,893 - ERROR - An error occurred in Feedback: 'feedback_report_1709523739.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-03 21:42:24,849 - ERROR - An error occurred in Feedback: 'feedback_report_1709523744.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-04 13:57:21,006 - ERROR - An error occurred in Feedback: AuthError('505002c8209c4a3f917d5fc00ea60e6c', AuthError('expired_access_token', None))
+2024-03-04 14:30:39,402 - ERROR - An error occurred in Feedback: AuthError('4f3e69732c2d43f8abe5d66c757636d5', AuthError('expired_access_token', None))
+2024-03-04 14:34:26,896 - ERROR - An error occurred in Feedback: AuthError('088c90e9d3b3462d9977b61c7e839461', AuthError('expired_access_token', None))
+2024-03-04 14:39:02,459 - ERROR - An error occurred in Feedback: 'feedback_report_1709584742.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-04 14:44:38,723 - ERROR - An error occurred in Feedback: '1709585078feedbackreport.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-04 14:46:05,984 - ERROR - An error occurred in Feedback: 'feedbackreport.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-04 14:47:42,007 - ERROR - An error occurred in Feedback: 'feedback_report_78c12c4e-750c-45ca-8932-a47ab519714a.pdf' did not match pattern '(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)'
+2024-03-04 15:05:40,126 - ERROR - An error occurred in Feedback: name 'time' is not defined
+2024-03-05 19:17:20,772 - ERROR - An error occurred in Feedback: AuthError('563c5900ad01474898bdfcefbcffa14c', AuthError('expired_access_token', None))
+2024-03-05 19:25:18,293 - ERROR - An error occurred in Feedback: upload_file() missing 1 required positional argument: 'st'
+2024-03-05 19:26:16,925 - ERROR - An error occurred in Feedback: upload_file() missing 2 required positional arguments: 'file_name' and 'st'
+2024-03-05 19:31:47,573 - ERROR - An error occurred in Feedback: upload_file() missing 1 required positional argument: 'st'
+2024-03-05 19:34:00,559 - ERROR - An error occurred in Feedback: feedback_page() missing 1 required positional argument: 'self'
+2024-03-05 19:34:25,051 - ERROR - An error occurred in Feedback: feedback_page() missing 1 required positional argument: 'self'
+2024-03-05 19:55:25,639 - ERROR - An error occurred in Feedback: 'str' object has no attribute 'value'
+2024-03-05 20:16:18,584 - ERROR - An error occurred in Feedback: upload_file() missing 1 required positional argument: 'user_email'
+2024-03-05 20:19:22,215 - ERROR - An error occurred in Feedback: 'str' object has no attribute 'value'
+2024-03-05 20:20:23,108 - ERROR - An error occurred in Feedback: 'str' object has no attribute 'value'
+2024-03-05 20:20:30,455 - ERROR - An error occurred in Feedback: 'str' object has no attribute 'value'
+2024-03-05 20:46:04,754 - ERROR - An error occurred in Feedback: upload_file() takes 4 positional arguments but 5 were given
+2024-03-06 14:00:50,630 - ERROR - An error occurred in Feedback: AuthError('629d01b686b84a468f4ea05a8a9decef', AuthError('expired_access_token', None))
+2024-03-17 21:58:00,720 - ERROR - An error occurred in Feedback: AuthError('faffd247dfc24d75af0eedaf98b12f89', AuthError('expired_access_token', None))
