@@ -31,26 +31,27 @@ def feedback_page():
     # Overall Impression Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Overall Impression</h3>", unsafe_allow_html=True)
-        was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"])
-        was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"])
-        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive?", ["Yes", "No"])
-        was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"])
+        was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"], index=None)
+        was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"], index=None)
+        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive?", ["Yes", "No"],
+                                             index=None)
+        was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"], index=None)
 
     # NetCDF4 Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>NetCDF4</h3>", unsafe_allow_html=True)
-        have_used_net_files = st.radio("Have you ever used NetCDF4 files before?", ["Yes", "No"])
+        have_used_net_files = st.radio("Have you ever used NetCDF4 files before?", ["Yes", "No"], index=None)
         upload_own_files = st.radio("Did you upload your own files or use the example dataset?",
-                                    ["I uploaded my own files.", "I used the example dataset."])
+                                    ["I uploaded my own files.", "I used the example dataset."], index=None)
 
     # Data Visualization Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Data Visualization</h3>", unsafe_allow_html=True)
-        useful_visual = st.radio("Do you think the visualizations generated are useful?", ["Yes", "No"])
+        useful_visual = st.radio("Do you think the visualizations generated are useful?", ["Yes", "No"], index=None)
         useful_features = st.text_area("Which specific features or aspects of the visualizations did you find most"
                                        "useful or interesting?")
         confusing_features = st.radio("Are there any features or aspects of the visualizations that you found"
-                                      "confusing or unnecessary?", ["Yes", "No"])
+                                      "confusing or unnecessary?", ["Yes", "No"], index=None)
         if confusing_features == "Yes":
             what_confusing = st.text_area("What did you find confusing or unnecessary?")
         suggestions_visual = st.text_area("Do you have any suggestions for improving the visualizations generated in"
@@ -66,9 +67,13 @@ def feedback_page():
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
         email_address = st.text_input("Email:")
-        is_student = st.radio("Are you a student?", ["Yes", "No"])
+        if email_address == "":
+            st.warning("Please enter email address.")
+        is_student = st.radio("Are you a student?", ["Yes", "No"], index=None)
         if is_student == "Yes":
             field_of_study = st.text_input("What is your Field of Study?")
+            if field_of_study == "":
+                st.warning("Please enter field of study.")
 
     # Additional Container
     with st.container():
