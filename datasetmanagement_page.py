@@ -71,8 +71,11 @@ def dataset_management_page():
             # Use the files uploaded by the user
             files_to_process = st.session_state['files_upload']
 
+        # Save files_to_process to session state
+        st.session_state['files_to_process'] = files_to_process
+
         # Extract data from either uploaded or example dataset files
-        if files_to_process:
+        if st.session_state['files_to_process']:
             (st.session_state['all_datetime_strings'],
              st.session_state['depth_levels'],
              st.session_state['variables_not_dimensions'],
@@ -164,7 +167,7 @@ def dataset_management_page():
             back_button()
 
         # Gets the files and makes sure they exist
-        current_files = st.session_state['files_to_process'] if 'files_to_process' in st.session_state else None
+        current_files = st.session_state['files_to_process']
 
         # Goes through all the files and makes sure they are read as bits to be passed into the MatPlotLib visuals
         if associated_files and current_files:
