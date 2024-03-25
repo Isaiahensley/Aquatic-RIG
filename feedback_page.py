@@ -33,8 +33,8 @@ def feedback_page():
         st.markdown("<h3 style='color: #0077cc;'>Overall Impression</h3>", unsafe_allow_html=True)
         was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"], index=None)
         was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"], index=None)
-        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive?", ["Yes", "No"],
-                                             index=None)
+        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive to use?",
+                                             ["Yes", "No"], index=None)
         was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"], index=None)
 
     # NetCDF4 Container
@@ -48,9 +48,9 @@ def feedback_page():
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Data Visualization</h3>", unsafe_allow_html=True)
         useful_visual = st.radio("Do you think the visualizations generated are useful?", ["Yes", "No"], index=None)
-        useful_features = st.text_area("Which specific features or aspects of the visualizations did you find most"
+        useful_features = st.text_area("Which specific features or aspects of the visualizations did you find most "
                                        "useful or interesting?")
-        confusing_features = st.radio("Are there any features or aspects of the visualizations that you found"
+        confusing_features = st.radio("Are there any features or aspects of the visualizations that you found "
                                       "confusing or unnecessary?", ["Yes", "No"], index=None)
         if confusing_features == "Yes":
             what_confusing = st.text_area("What did you find confusing or unnecessary?")
@@ -83,7 +83,7 @@ def feedback_page():
     # Privacy and Data Usage Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
-        st.markdown("We will use your feedback data and ensure that your responses will be kept confidential and used"
+        st.markdown("We will use your feedback data and ensure that your responses will be used "
                     "only for improving this website.")
 
     # Sending Feedback Function
