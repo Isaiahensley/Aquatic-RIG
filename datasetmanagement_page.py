@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from io import BytesIO
+import logging
 
-
+logging.basicConfig(filename='streamlit_errors.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 # Initialize session_state variables safely
 def initialize_state():
     if 'current_step' not in st.session_state:
@@ -459,7 +460,8 @@ def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable)
         st.image(buf, width=1080)
 
     except Exception as e:
-        st.error(f"Error generating heatmap: {e}")
+        logging.error(f"An error occurred in dataset_management_page: {str(e)}")
+        st.error(f"An error occurred: {str(e)}")
     finally:
         nc_file.close()
 
@@ -517,7 +519,8 @@ def quiverplot(variables_not_dimensions, file_bytes, datetime_str, depth, select
         #st.image(buf, use_column_width=True)
         st.image(buf, width=1080)
     except Exception as e:
-        st.error(f"Error generating quiver plot: {e}")
+        logging.error(f"An error occurred in dataset_management_page: {str(e)}")
+        st.error(f"An error occurred: {str(e)}")
     finally:
         nc_file.close()
 
