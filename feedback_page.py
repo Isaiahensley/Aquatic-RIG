@@ -38,10 +38,11 @@ def feedback_page():
     # Overall Impression Container
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>Overall Impression</h3>", unsafe_allow_html=True)
-        was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"])
-        was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"])
-        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive?", ["Yes", "No"])
-        was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"])
+        was_easy_navigate = st.radio("Was the website easy to navigate?", ["Yes", "No"], index=None)
+        was_homepage_informative = st.radio("Did you find the home page informative?", ["Yes", "No"], index=None)
+        was_data_manage_intuitive = st.radio("Did you find the dataset management page intuitive to use?",
+                                             ["Yes", "No"], index=None)
+        was_about_page_informative = st.radio("Did you find the about page informative?", ["Yes", "No"], index=None)
 
     # NetCDF4 Container
     with st.container():
@@ -73,9 +74,13 @@ def feedback_page():
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
         email_address = st.text_input("Email:")
-        is_student = st.radio("Are you a student?", ["Yes", "No"])
+        if email_address == "":
+            st.warning("Please enter email address.")
+        is_student = st.radio("Are you a student?", ["Yes", "No"], index=None)
         if is_student == "Yes":
             field_of_study = st.text_input("What is your Field of Study?")
+            if field_of_study == "":
+                st.warning("Please enter field of study.")
 
     # Additional Container
     with st.container():
@@ -87,6 +92,7 @@ def feedback_page():
         st.markdown("<h3 style='color: #0077cc;'>Privacy and Data Usage</h3>", unsafe_allow_html=True)
         st.markdown("We will use your feedback data and ensure that your responses will be kept confidential and used"
                     "only for improving this website.")
+
     if st.button("SEND"):
         # Generate PDF
         feedback_data = {
