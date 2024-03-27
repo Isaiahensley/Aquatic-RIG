@@ -6,6 +6,7 @@ import numpy as np
 from datetime import datetime
 from io import BytesIO
 import logging
+import os
 
 logging.basicConfig(filename='streamlit_errors.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -26,6 +27,19 @@ def increment_step():
 def decrement_step():
     if st.session_state['current_step'] > 0:
         st.session_state['current_step'] -= 1
+
+def load_example_dataset():
+    example_files = []
+    example_dataset_folder = 'example_dataset'
+    for filename in os.listdir(example_dataset_folder):
+        if filename.endswith('.nc'):
+            file_path = os.path.join(example_dataset_folder, filename)
+            with open(file_path, 'rb') as f:
+                bytes_io = BytesIO(f.read())
+                bytes_io.name = filename  # Set the name attribute to the filename
+                example_files.append(bytes_io)
+    return example_files
+
 
 
 def dataset_management_page():
