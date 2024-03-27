@@ -84,6 +84,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-def about_page():
-    st.title("This is the about page")
 
