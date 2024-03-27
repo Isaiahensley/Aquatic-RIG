@@ -70,7 +70,7 @@ def about_page():
     """, unsafe_allow_html=True, text_align='left')
 
     st.write("For more information, you can visit the [NetCDF Overview page](https://docs.unidata.ucar.edu/netcdf-c/current/) on Unidata's website.", unsafe_allow_html=True, text_align='left')
-    st.image("ocean.jpg", caption="Image taken from: https://oceanexplorer.noaa.gov/world-oceans-day-2015/how-much-of-the-seafloor-is-left-to-explore.html")
+    st.image("images/ocean.jpg", caption="Image taken from: https://oceanexplorer.noaa.gov/world-oceans-day-2015/how-much-of-the-seafloor-is-left-to-explore.html")
 
 def main():
     st.sidebar.title("Navigation")
