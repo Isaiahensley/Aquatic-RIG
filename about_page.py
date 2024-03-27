@@ -6,7 +6,7 @@ def about_page():
 
     st.markdown(
         """
-        Welcome to our data visualization platform! We help you turn your data into actionable insights.
+        Welcome to our d ata visualization platform! We help you turn your data into actionable insights.
         """
     )
 
