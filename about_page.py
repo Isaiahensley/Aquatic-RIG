@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import streamlit as st
 
 def about_page():
@@ -85,3 +86,10 @@ if __name__ == "__main__":
     main()
 
     import streamlit as st
+=======
+import streamlit as st
+
+
+def about_page():
+    st.title("This is the about page")
+>>>>>>> 787f460 (Adding the workflow)
