@@ -1,12 +1,14 @@
-
 import streamlit as st
 
+
+# The About Page Structure
 def about_page():
+    # Title
     st.title("Data Visualization Platform")
 
     st.markdown(
         """
-        Welcome to our d ata visualization platform! We help you turn your data into actionable insights.
+        Welcome to our data visualization platform! We help you turn your data into actionable insights.
         """
     )
 
@@ -72,6 +74,8 @@ def about_page():
     st.write("For more information, you can visit the [NetCDF Overview page](https://docs.unidata.ucar.edu/netcdf-c/current/) on Unidata's website.", unsafe_allow_html=True, text_align='left')
     st.image("images/ocean.jpg", caption="Image taken from: https://oceanexplorer.noaa.gov/world-oceans-day-2015/how-much-of-the-seafloor-is-left-to-explore.html")
 
+
+# The Main Function
 def main():
     st.sidebar.title("Navigation")
     pages = {
@@ -81,6 +85,7 @@ def main():
 
     page = pages[selection]
     page()
+
 
 if __name__ == "__main__":
     main()
