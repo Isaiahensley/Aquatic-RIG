@@ -81,6 +81,7 @@ def dataset_management_page():
             # Use the files uploaded by the user
             files_to_process = st.session_state['files_upload']
 
+            # Get all dimensions in the uploaded .nc files
             dimensions = extract_dimensions(files_to_process)
 
             time_option = st.selectbox(
