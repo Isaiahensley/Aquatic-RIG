@@ -3,7 +3,6 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import base64
 from io import BytesIO
-import dropbox
 from io import BytesIO
 import logging
 from dropbox_utils import DropboxLogger
