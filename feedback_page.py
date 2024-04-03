@@ -64,16 +64,16 @@ def feedback_page():
                                             "any technical issues?")
 
     # User Information Container
-    with st.container():
-        st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
-        email_address = st.text_input("Email:")
-        if email_address == "":
-            st.warning("Please enter email address.")
-        is_student = st.radio("Are you a student?", ["Yes", "No"], index=None)
-        if is_student == "Yes":
-            field_of_study = st.text_input("What is your Field of Study?")
-            if field_of_study == "":
-                st.warning("Please enter field of study.")
+    # with st.container():
+    # st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
+    # email_address = st.text_input("Email:")
+    # if email_address == "":
+    # st.warning("Please enter email address.")
+    # is_student = st.radio("Are you a student?", ["Yes", "No"], index=None)
+    # if is_student == "Yes":
+    # field_of_study = st.text_input("What is your Field of Study?")
+    # if field_of_study == "":
+    # st.warning("Please enter field of study.")
 
     # Additional Container
     with st.container():
@@ -101,8 +101,8 @@ def feedback_page():
             "Confusing Parts for Visualization": what_confusing,
             "Suggestions for Visuals": suggestions_visual,
             "Feedback Performance": performance_question,
-            "Email Address": email_address,
-            "Field of Study": field_of_study,
+            # "Email Address": email_address,
+            # "Field of Study": field_of_study,
             "Additional Comments": additional_comments
         }
         pdf_filename = generate_pdf(feedback_data)
