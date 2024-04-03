@@ -6,61 +6,31 @@ def about_page():
 
     st.markdown(
         """
-        Welcome to our d ata visualization platform! We help you turn your data into actionable insights.
+        Welcome to our data visualization platform! We help you turn your data into actionable insights.
         """
     )
 
-    st.write("---")
 
-    st.header("Key Features")
+    st.header("Use Cases")
 
     st.write(
-        """
-        Here are some of the features that make our platform stand out:
-        - Interactive Visualizations
-        - Customizable Dashboards
-        - Real-time Data Updates
-        - Seamless Integration with Various Data Sources
-        """
-    )
-
-    st.write("---")
-
-    st.header("Case Studies")
-
-    st.write(
-        """
-        Check out some of our success stories:
-        - Lorem Ipsum Case Study 1
-          ![Case Study 1](https://via.placeholder.com/400x200)
-        - Lorem Ipsum Case Study 2
-          ![Case Study 2](https://via.placeholder.com/400x200)
+        """  NetCDF data are self describing meaning these files includes information about
+        the data it contains such as when data elements are captured and what units of measurement were used. 
+        They contains wide range of information including ocean temperature, salinity, current velocities, sea level etc.
+        Here are some of the use cases for visualizing NetCDF aquatic dataset:
+        - Oceanographic Research:  
+                            Researchers can use NetCDF visuals to showcase ocean temperature, current salinity over time and space.
+                            It is useful for studying ocean circulation pattern, track movement of water masses.
+        
+        - Climate change Monitoring: 
+                            NetCDF data can show the effect of climate change on aquatic ecosystem
+        - Education Tools
+                            Visuals obtained from NetCDF can be used as education tool to learn about oceanography
+                            , climate science and environmental issue
+        - Fisheries Management
+        - Coastal Zone Management
         """
     )
-
-    st.write("---")
-
-    st.header("Testimonials")
-
-    st.write(
-        """
-        Here's what our users are saying:
-        - "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam mauris ac tortor condimentum, nec viverra nisl aliquet." - John Doe
-        - "Nullam eu metus nec justo aliquet pharetra. Mauris non nisi ac risus commodo finibus ut nec ex." - Jane Smith
-        """
-    )
-
-    st.write("---")
-
-    st.header("Get Started")
-
-    st.write(
-        """
-        Ready to experience the power of data visualization? Sign up for a free trial today!
-        """
-    )
-
-
     st.title("About NetCDF Files")
 
     st.write("""
