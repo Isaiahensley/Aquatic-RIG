@@ -328,6 +328,7 @@ def extract_dimensions(files_upload):
 
     return dimensions
 
+
 # Makes sure the data in the files have all necessary data requirements
 def data_check(files_upload, all_datetime_strings, depth_levels, variables_not_dimensions, datetime_to_file_map):
     check = True
