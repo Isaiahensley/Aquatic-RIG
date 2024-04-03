@@ -30,7 +30,7 @@ def howtouse():
         with st.expander("Getting Started", expanded=False):
             st.write("To get started you'll need to either upload an aquatic dataset or use our preset example dataset")
             with st.container(border=True):
-                st.image('how-to-use/initial.png')
+                st.image('how-to-use/initial.PNG')
 
         # Uploading Files
         with st.expander("Uploading Files", expanded=False):
@@ -40,7 +40,7 @@ def howtouse():
             st.write("Multiple Files can be uploaded if they are similar but have data for different Time dimensions  \n")
             st.write("All files must have the same names for each dimension and variable  \n")
             with st.container(border=True):
-                st.image('how-to-use/uploading.png')
+                st.image('how-to-use/uploading.PNG')
 
         # Example Dataset
         with st.expander("Example Dataset", expanded=False):
@@ -81,7 +81,7 @@ def howtouse():
                 "[ERDDAP SCCOOS](https://erddap.sccoos.org/erddap/files/roms_fcst/)"
             )
             with st.container(border=True):
-                st.image('how-to-use/example.png')
+                st.image('how-to-use/example.PNG')
 
         # Uploaded File Dimensions
         with st.expander("Uploaded File Dimensions", expanded=False):
@@ -92,7 +92,7 @@ def howtouse():
                      "and this page will be skipped**")
 
             with st.container(border=True):
-                st.image('how-to-use/dimensions.png')
+                st.image('how-to-use/dimensions.PNG')
 
             st.write("In this example, the dimension names found in the dataset are time, depth, lat, and lon. We will put these in their respective dimensions.  \n"
                      "**time** = Time  \n"
@@ -100,7 +100,7 @@ def howtouse():
                      "**lat** = Latitude  \n"
                      "**lon** = Longitude")
             with st.container(border=True):
-                st.image('how-to-use/dimensions2.png')
+                st.image('how-to-use/dimensions2.PNG')
 
         # Visualization Options
         with st.expander("Visualization Options", expanded=False):
@@ -109,7 +109,7 @@ def howtouse():
 
             st.write("Currently, we offer two visualization options: Heat Map and Quiver Plot.")
             with st.container(border=True):
-                st.image('how-to-use/visoption.png')
+                st.image('how-to-use/visoption.PNG')
 
             st.write("**Heat Map**  \n"
             "This tool is designed for visualizing a chosen variable by coloring each data point according to its value. "
@@ -122,7 +122,7 @@ def howtouse():
             "vectors.  \n")
 
             with st.container(border=True):
-                st.image('how-to-use/visoption2.png')
+                st.image('how-to-use/visoption2.PNG')
 
         # Heat Map Variable
         with st.expander("Heat Map Variable", expanded=False):
@@ -133,13 +133,13 @@ def howtouse():
                      "coordinate. You can also change the Time and Depth to see how this influences the data values.")
 
             with st.container(border=True):
-                st.image('how-to-use/heatvar.png')
+                st.image('how-to-use/heatvar.PNG')
 
             st.write("In this example, the variable options we have are temp, salt, u, v, and zeta. With this dataset, "
                      "if you choose temp, you will get a Heat Map displaying all the temperature values at each location.")
 
             with st.container(border=True):
-                st.image('how-to-use/heatvar2.png')
+                st.image('how-to-use/heatvar2.PNG')
 
         # Heat Map
         with st.expander("Heat Map", expanded=False):
@@ -155,7 +155,7 @@ def howtouse():
             st.write("**Currently each visuals gradient range is based on the current depth and time. This means that "
                      "as you change these dimensions the color gradient may represent different values.**")
             with st.container(border=True):
-                st.image('how-to-use/heat.png')
+                st.image('how-to-use/heat.PNG')
 
         # Quiver Plot Variables
         with st.expander("Quiver Plot Variables", expanded=False):
@@ -165,7 +165,7 @@ def howtouse():
             st.write("These two variables represent vectors so that the water currents can be displayed in respect to "
                      "the currents velocity and direction.")
             with st.container(border=True):
-                st.image('how-to-use/quivervar.png')
+                st.image('how-to-use/quivervar.PNG')
 
             st.write("**Horizontal (u)**  \n"
                      "Typically referenced as 'u' in a dataset, it is a variable that captures the movement in the "
@@ -178,7 +178,7 @@ def howtouse():
                      "It helps determine the direction and velocity as water currents move vertically.")
 
             with st.container(border=True):
-                st.image('how-to-use/quivervar2.png')
+                st.image('how-to-use/quivervar2.PNG')
 
         # Quiver Plot
         with st.expander("Quiver Plot", expanded=False):
@@ -191,7 +191,7 @@ def howtouse():
                      "the visual on the right will update.")
 
             with st.container(border=True):
-                st.image('how-to-use/quiver.png')
+                st.image('how-to-use/quiver.PNG')
 
 
 # ----------------------------------------------Use Cases-------------------------------------------------
