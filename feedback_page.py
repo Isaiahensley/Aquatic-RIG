@@ -113,11 +113,10 @@ def feedback_page():
             "Field of Study": field_of_study,
             "Additional Comments": additional_comments
         }
-        user_email = email_address;
         pdf_filename, pdf_content = generate_pdf(feedback_data)
 
         dropbox_logger = DropboxLogger(DROPBOX_ACCESS_TOKEN)
-        dropbox_logger.upload_file(pdf_content, pdf_filename, st, user_email)
+        dropbox_logger.upload_file(pdf_content, pdf_filename, st)
 
         # Display PDF
         with open(pdf_filename, "rb") as f:

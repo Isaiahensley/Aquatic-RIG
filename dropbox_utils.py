@@ -2,14 +2,16 @@ import dropbox
 from token_file import DROPBOX_ACCESS_TOKEN
 import streamlit as st
 from datetime import datetime
+import datetime
 class DropboxLogger:
     def __init__(self, access_token):
         self.dbx = dropbox.Dropbox(access_token)
 
-    def upload_file(self, file_data, file_name, st, user_email):
+    def upload_file(self, file_data, file_name, st):
         try:
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             # Construct the new filename with the user's email
-            new_file_name = f"feedback_report_{user_email}.pdf"
+            new_file_name = f"feedback_report_{current_time}.pdf"
 
             # Upload the file to Dropbox
             upload_path = f'/Apps/Feedbackfiles/{new_file_name}'
@@ -19,7 +21,6 @@ class DropboxLogger:
         except dropbox.exceptions.ApiError as e:
             st.error(f"Error uploading '{file_name}' to Dropbox: {e}")
 
-    from datetime import datetime
 
     def upload_error_log(self, error_log):
         # Format the current time
