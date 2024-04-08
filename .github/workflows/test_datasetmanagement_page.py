@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 from unittest.mock import patch
 
-from datasetmanagement_page.py import datasetmanagement_page
+from datasetvisualization_page.py import datasetmanagement_page
 
 @pytest.fixture
 def streamlit_dg_fixture():
