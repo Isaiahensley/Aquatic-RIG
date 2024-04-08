@@ -2,7 +2,7 @@ import streamlit as st
 from home_page import home_page
 from about_page import about_page
 from feedback_page import feedback_page
-from datasetmanagement_page import dataset_management_page
+from datasetvisualization_page import dataset_visualization_page
 
 
 class MultiApp:
@@ -21,11 +21,11 @@ class MultiApp:
         )
         st.sidebar.markdown("---")
 
-        if selected_app == "Home Page":
+        if selected_app == "Home":
             home_page()
-        elif selected_app == "Dataset Management":
-            dataset_management_page()
-        elif selected_app == "About Page":
+        elif selected_app == "Dataset Visualization":
+            dataset_visualization_page()
+        elif selected_app == "About":
             about_page()
         elif selected_app == "Feedback":
             feedback_page()
@@ -34,9 +34,9 @@ class MultiApp:
 if __name__ == "__main__":
     app = MultiApp()
 
-    app.add_app("Home Page", home_page)
-    app.add_app("Dataset Management", dataset_management_page)
-    app.add_app("About Page", about_page)
+    app.add_app("Home", home_page)
+    app.add_app("Dataset Visualization", dataset_visualization_page)
+    app.add_app("About", about_page)
     app.add_app("Feedback", feedback_page)
 
     app.run()
