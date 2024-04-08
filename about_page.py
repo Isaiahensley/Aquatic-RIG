@@ -21,7 +21,7 @@ def netcdf4():
     
         st.write(
             " [NetCDF-4](https://www.loc.gov/preservation/digital/formats/fdd/fdd000332.shtml) is an enhanced format as"
-            "it supports per-variable compression, multiple ultimate dimensions, "
+            " it supports per-variable compression, multiple ultimate dimensions, "
             "more complex data types, and better performance."
             "multiple ultimate dimensions, more complex data types, and better performance. ",unsafe_allow_html=True, text_align='left')
 
