@@ -18,6 +18,12 @@ def netcdf4():
     
         "NetCDF is a self-describing, machine-independent binary file format for storing scientific data, primarily gridded data. It supports the creation, access, and sharing of array-oriented scientific data, allowing researchers to store large datasets efficiently and effectively. NetCDF files can contain multiple dimensions, variables, and attributes, providing a flexible and scalable solution for organizing complex data structures. The format is widely used in fields such as atmospheric science, oceanography, climate modeling, and geoscience due to its ability to handle multidimensional datasets and maintain metadata integrity. NetCDF files are supported by a variety of programming languages and data analysis tools, making them a standard choice for scientific data storage and exchange."
         """, unsafe_allow_html=True, text_align='left')
+    
+        st.write(
+            " [NetCDF-4](https://www.loc.gov/preservation/digital/formats/fdd/fdd000332.shtml) is an enhanced format as"
+            "it supports per-variable compression, multiple ultimate dimensions, "
+            "more complex data types, and better performance."
+            "multiple ultimate dimensions, more complex data types, and better performance. ",unsafe_allow_html=True, text_align='left')
 
         st.write("For more information, you can visit the [NetCDF Overview page](https://docs.unidata.ucar.edu/netcdf-c/current/) on Unidata's website.", unsafe_allow_html=True, text_align='left')
         st.image("images/ocean.jpg", caption="Image taken from: https://oceanexplorer.noaa.gov/world-oceans-day-2015/how-much-of-the-seafloor-is-left-to-explore.html")
