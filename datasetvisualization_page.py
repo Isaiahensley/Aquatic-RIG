@@ -40,7 +40,7 @@ def load_example_dataset():
 
 
 # Main function to manage the dataset page
-def dataset_management_page():
+def dataset_visualization_page():
     initialize_state()
 
     # ------------------------
@@ -144,7 +144,6 @@ def dataset_management_page():
     # -----------------------------------
 
     if st.session_state['current_step'] == 2:
-
 
         # Extract data from either uploaded or example dataset files
         if st.session_state['files_to_process']:
@@ -621,4 +620,3 @@ def quiverplot(variables_not_dimensions, file_bytes, datetime_str, depth, select
         st.error(f"Error generating quiver plot: {e}")
     finally:
         nc_file.close()
-
