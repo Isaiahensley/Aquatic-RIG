@@ -2,6 +2,7 @@ import streamlit as st
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import base64
+<<<<<<< HEAD
 from io import BytesIO
 import dropbox
 from io import BytesIO
@@ -10,6 +11,11 @@ from dropbox_utils import DropboxLogger
 from token_file import DROPBOX_ACCESS_TOKEN
 from datetime import datetime
 
+=======
+from dropbox_utils import DropboxLogger
+
+
+>>>>>>> 49773d361d4ec389ad35e455248a911b697ce76a
 def generate_pdf(data):
     pdf_filename = "feedback_report.pdf"
     pdf_canvas = canvas.Canvas(pdf_filename, pagesize=letter)
@@ -75,9 +81,6 @@ def feedback_page():
     field_of_study = "NA"
     with st.container():
         st.markdown("<h3 style='color: #0077cc;'>User Information</h3>", unsafe_allow_html=True)
-        email_address = st.text_input("Email:")
-        if email_address == "":
-            st.warning("Please enter email address.")
         is_student = st.radio("Are you a student?", ["Yes", "No"], index=None)
         if is_student == "Yes":
             field_of_study = st.text_input("What is your Field of Study?")
@@ -109,13 +112,16 @@ def feedback_page():
             "Confusing Parts for Visualization": what_confusing,
             "Suggestions for Visuals": suggestions_visual,
             "Feedback Performance": performance_question,
-            "Email Address": email_address,
             "Field of Study": field_of_study,
             "Additional Comments": additional_comments
         }
         pdf_filename, pdf_content = generate_pdf(feedback_data)
 
+<<<<<<< HEAD
         dropbox_logger = DropboxLogger(DROPBOX_ACCESS_TOKEN)
+=======
+        dropbox_logger = DropboxLogger(st.secrets["DB_TOKEN"])
+>>>>>>> 49773d361d4ec389ad35e455248a911b697ce76a
         dropbox_logger.upload_file(pdf_content, pdf_filename, st)
 
         # Display PDF
