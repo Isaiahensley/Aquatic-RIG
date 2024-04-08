@@ -3,15 +3,10 @@ from home_page import home_page
 from about_page import about_page
 from feedback_page import feedback_page
 from datasetmanagement_page import dataset_management_page
-<<<<<<< HEAD
 import logging
 from dropbox_utils import DropboxLogger
 from token_file import DROPBOX_ACCESS_TOKEN
 dropbox_logger = DropboxLogger(DROPBOX_ACCESS_TOKEN)
-=======
-
-
->>>>>>> 49773d361d4ec389ad35e455248a911b697ce76a
 class MultiApp:
     def __init__(self):
         self.apps = []
