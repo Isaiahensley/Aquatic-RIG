@@ -3,28 +3,25 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import base64
 from dropbox_utils import DropboxLogger
+from io import BytesIO
 
 
 def generate_pdf(data):
-    pdf_filename = "feedback_report.pdf"
-    pdf_canvas = canvas.Canvas(pdf_filename, pagesize=letter)
+    pdf_buffer = BytesIO()
+    pdf_canvas = canvas.Canvas(pdf_buffer, pagesize=letter)
 
     pdf_canvas.setFont("Helvetica", 12)
     pdf_canvas.drawString(100, 750, "Feedback Report")
 
-    # Add feedback data to the PDF
     y_position = 730
     for key, value in data.items():
         pdf_canvas.drawString(100, y_position, f"{key}: {value}")
         y_position -= 15
 
     pdf_canvas.save()
+    pdf_buffer.seek(0)  # Move to the beginning of the BytesIO buffer
 
-    # Read the content of the PDF file
-    with open(pdf_filename, "rb") as f:
-        pdf_content = f.read()
-
-    return pdf_filename, pdf_content
+    return "feedback_report.pdf", pdf_buffer.getvalue()
 
 
 def feedback_page():
@@ -88,42 +85,21 @@ def feedback_page():
                     "only for improving this website.")
 
     if st.button("SEND"):
-        # Generate PDF
         feedback_data = {
-            "Was Easy to Navigate": was_easy_navigate,
-            "Was Homepage Informative": was_homepage_informative,
-            "Was Data Management Page Intuitive": was_data_manage_intuitive,
-            "Was About Page Informative": was_about_page_informative,
-            "Has User Used NetCDF4 Files Before": have_used_net_files,
-            "Is User's Own Files": upload_own_files,
-            "Is Visualization Useful": useful_visual,
-            "Useful Features in Visualization": useful_features,
-            "Confusing Parts for Visualization": what_confusing,
-            "Suggestions for Visuals": suggestions_visual,
-            "Feedback Performance": performance_question,
-            "Field of Study": field_of_study,
-            "Additional Comments": additional_comments
+            # your data dictionary
         }
         pdf_filename, pdf_content = generate_pdf(feedback_data)
 
         dropbox_logger = DropboxLogger(st.secrets["DB_TOKEN"])
-        dropbox_logger.upload_file(pdf_content, pdf_filename, st)
+        dropbox_logger.upload_file(pdf_content, st)  # Adjust method to handle bytes
 
         # Display PDF
-        with open(pdf_filename, "rb") as f:
-            pdf_contents = f.read()
-
-        # Convert PDF to base64 encoding
-        pdf_base64 = base64.b64encode(pdf_contents).decode("utf-8")
-
-        # Display download link
+        pdf_base64 = base64.b64encode(pdf_content).decode("utf-8")
         st.markdown(f"### Generated PDF:")
         st.markdown(
             f'<a href="data:application/pdf;base64,{pdf_base64}" download="{pdf_filename}">Download PDF</a>',
             unsafe_allow_html=True,
         )
-        st.markdown("---")
-        st.write(pdf_filename)
         st.success("Thank you for your feedback! 🚀")
 
     if __name__ == "__main__":

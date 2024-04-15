@@ -232,10 +232,9 @@ def dataset_visualization_page():
                                                                      st.session_state['all_datetime_strings'])
             selected_depth = depth_slider(st.session_state['depth_levels'])
 
-            # I used this markdown to fill up empty space so the back button would be on the bottom
-            st.markdown("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>",
-                        unsafe_allow_html=True)
-            back_button()
+            color = st.color_picker('Plot Color', '#FFFFFF')
+
+            st.write(" ")
 
         # Gets the files and makes sure they exist
         current_files = st.session_state['files_to_process']
@@ -252,15 +251,15 @@ def dataset_visualization_page():
                 # If Heat Map is selected and a variable is chosen, create a heatmap with that variable
                 if st.session_state.selected_visualization == "Heat Map" and 'selected_variable' in st.session_state:
                     with right_column:
-                        heatmap(st.session_state['variables_not_dimensions'], file_bytes, selected_datetime_str,
-                                selected_depth, st.session_state.selected_variable)
+                        heatmap(file_bytes, selected_datetime_str, selected_depth, st.session_state.selected_variable,
+                                color, left_column)
 
                 # If Quiver Plot is selected and a U and V variable is chosen, create a Quiver Plot with them
                 elif st.session_state.selected_visualization == "Quiver Plot" and 'selected_xvelocity' in st.session_state and 'selected_yvelocity' in st.session_state:
                     with right_column:
-                        quiverplot(st.session_state['variables_not_dimensions'], file_bytes, selected_datetime_str,
-                                   selected_depth, st.session_state.selected_xvelocity,
-                                   st.session_state.selected_yvelocity)
+                        quiverplot(file_bytes, selected_datetime_str, selected_depth,
+                                   st.session_state.selected_xvelocity, st.session_state.selected_yvelocity,
+                                   color, left_column)
             else:
                 st.write("No file content available")
 
@@ -500,7 +499,7 @@ def parse_datetime(datetime_str):
 
 
 # Creates a heat map with the variable selected for each latitude, longitude, selected time, and selected depth.
-def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable):
+def heatmap(file_bytes, datetime_str, depth, selected_variable, color, left_column):
     # Load the NetCDF file from bytes
     nc_file = nc.Dataset('in-memory', memory=file_bytes)
 
@@ -514,7 +513,7 @@ def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable)
         selected_time_index = np.where(nc.num2date(time_var[:], units=time_units) == selected_datetime)[0][0]
 
         # Access the data for the selected variable
-        data = nc_file.variables[variable]
+        data = nc_file.variables[selected_variable]
 
         # Assuming the data structure is [time, depth, lat, lon]
         selected_data = data[selected_time_index, depth, :, :]
@@ -528,11 +527,12 @@ def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable)
         c = ax.pcolormesh(lon, lat, selected_data, cmap='coolwarm')
 
         # Adjust color
-        color = "white"
+        #color = "black"
 
         # Set axis labels with specified color
         ax.set_xlabel('Longitude', color=color)
         ax.set_ylabel('Latitude', color=color)
+        ax.set_title(f'Heat map for {selected_variable} at depth {depth} on {datetime_str}', color=color)
 
         # Set tick labels and ticks color
         ax.tick_params(colors=color, which='both')  # 'both' applies changes to both major and minor ticks
@@ -542,8 +542,8 @@ def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable)
             spine.set_color(color)
 
         # Create colorbar with specified label color
-        colorbar = fig.colorbar(c, ax=ax, label=variable)
-        colorbar.set_label(variable, color=color)
+        colorbar = fig.colorbar(c, ax=ax, label=selected_variable)
+        colorbar.set_label(selected_variable, color=color)
 
         # Set colorbar tick color and tick labels to specified color
         colorbar.ax.yaxis.set_tick_params(color=color)  # This sets the tick color
@@ -551,12 +551,19 @@ def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable)
 
         fig.tight_layout(pad=1.0)
 
-        # Enhance the picture quality by increasing the DPI (this may lead to longer load times)
-        dpi = 500  # Adjust DPI to your needs for higher resolution
-
         buf = BytesIO()
-        fig.savefig(buf, format="png", dpi=dpi, transparent=True)
-        st.image(buf, width=1080)
+        fig.savefig(buf, format="png", dpi=500, transparent=True)
+        image = st.image(buf, width=1080)
+
+        with left_column:
+            st.download_button(
+                label='Download Image',
+                data=buf,
+                file_name=f'Heat map for {selected_variable} at depth {depth} on {datetime_str}.png',
+                mime="image/png",
+            )
+
+            back_button()
 
     except Exception as e:
         st.error(f"Error generating heatmap: {e}")
@@ -565,7 +572,7 @@ def heatmap(variables_not_dimensions, file_bytes, datetime_str, depth, variable)
 
 
 # Creates a Quiver Plot with the selected U and V for each latitude, longitude, selected time, and selected depth.
-def quiverplot(variables_not_dimensions, file_bytes, datetime_str, depth, selected_xvelocity, selected_yvelocity):
+def quiverplot(file_bytes, datetime_str, depth, selected_xvelocity, selected_yvelocity, color, left_column):
     # Load the NetCDF file from bytes
     nc_file = nc.Dataset('in-memory', memory=file_bytes)
 
@@ -594,28 +601,41 @@ def quiverplot(variables_not_dimensions, file_bytes, datetime_str, depth, select
         Lon = Lon[skip]
         Lat = Lat[skip]
 
-        # Setting up the plot with a dark background for white elements to stand out
-        plt.style.use('dark_background')
         fig, ax = plt.subplots(figsize=(10, 7.5))
-        q = ax.quiver(Lon, Lat, u_data, v_data, color='white')  # Set arrow color to white
+        q = ax.quiver(Lon, Lat, u_data, v_data, color=color) # Change arrow color
 
-        # Include a key to indicate scale, with text in white
-        ax.quiverkey(q, X=0.9, Y=1.05, U=10, label='10 units', labelpos='E', color='white')
+        # Include a key to indicate scale, with text in color
+        key = ax.quiverkey(q, X=0.9, Y=0.978, U=1, label='1 unit', labelpos='E', color=color)
+        key.text.set_color(color)
 
-        # Set axis labels and title with white text
-        ax.set_xlabel('Longitude', color='white')
-        ax.set_ylabel('Latitude', color='white')
-        #ax.set_title(f'Quiver plot for {selected_xvelocity} and {selected_yvelocity} at depth {depth} on {datetime_str}', color='white')
+        # Set axis labels and title with specified color
+        ax.set_xlabel('Longitude', color=color)
+        ax.set_ylabel('Latitude', color=color)
+        ax.set_title(f'Quiver plot for {selected_xvelocity} and {selected_yvelocity} at depth {depth} on {datetime_str}', color=color)
 
-        # Changing tick parameters to white
-        ax.tick_params(axis='both', colors='white')
+        # Changing tick parameters and spine colors to specified color
+        ax.tick_params(axis='both', colors=color)
+        for spine in ax.spines.values():
+            spine.set_color(color)
 
         fig.tight_layout()
 
         buf = BytesIO()
-        fig.savefig(buf, format="png", dpi=300, transparent=True)
-        #st.image(buf, use_column_width=True)
+        fig.savefig(buf, format="png", dpi=500, transparent=True)
+        buf.seek(0)
         st.image(buf, width=1080)
+
+        with left_column:
+            st.download_button(
+                label='Download Image',
+                data=buf,
+                file_name=f'Quiver plot for {selected_xvelocity} and {selected_yvelocity} '
+                          f'at depth {depth} on {datetime_str}.png',
+                mime="image/png",
+            )
+
+            back_button()
+
     except Exception as e:
         st.error(f"Error generating quiver plot: {e}")
     finally:

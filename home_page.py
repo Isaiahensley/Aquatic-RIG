@@ -3,14 +3,6 @@ from PIL import Image
 
 
 def home_page():
-    # Sidebar
-    st.sidebar.markdown("Dataset-Related Links")
-    st.sidebar.link_button("GitHub Page", "https://github.com/Isaiahensley/Aquatic-RIG")
-
-    st.sidebar.markdown("Software-Related Links")
-    st.sidebar.link_button("Matplotlib", "https://matplotlib.org/")
-    st.sidebar.link_button("Streamlit", "https://streamlit.io/")
-    st.sidebar.link_button("NumPy", "https://numpy.org/")
 
     # Main Content
     left_col, right_col = st.columns(2)
@@ -28,7 +20,9 @@ def home_page():
     with st.container():
         col1, col2, col3 = st.columns([2, 1, 2])
         with col1:
+            # ----------- Summary -----------
             st.header('**:blue[Summary]**')
+
             st.write('Aquatic data researchers need a powerful and easy to use data visualization tool to sort through'
                      ' complex data. What makes our website tool different from others is the way it handles'
                      ' multi-dimensional data. Unlike existing software, our website lets users visualize several types'
@@ -38,10 +32,23 @@ def home_page():
                      ' Our website focuses on visualizing aquatic data stored in NetCDF4 files. These files are '
                      'powerful for aquatic research as they allow data to be stored at specific'
                      ' multi-dimensional locations.')
+
             st.markdown("---")
 
+            # ----------- Navigation -----------
             st.header("**:blue[Navigation]**")
-            # Add navigation content here
+
+            st.markdown("#### Dataset Visualization")
+            st.write('Upload and visualize aquatic datasets')
+            st.write(" ")
+
+            st.markdown("#### About")
+            st.write('How to use, NetCDF, Use Cases')
+            st.write(" ")
+
+            st.markdown("#### Feedback")
+            st.write('Give us feedback to further improve our website!')
+            st.write(" ")
 
         # GIFs in the third column
         with col3:
